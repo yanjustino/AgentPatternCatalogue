@@ -12,7 +12,7 @@ public class PassiveGoalCreator
     {
         var prompt = $"""
                       Input: 
-                        - {userInput}
+                        {userInput}
                       Context:
                         {memoryContext}
                       Instructions:
@@ -22,7 +22,7 @@ public class PassiveGoalCreator
                         - Do not include any other text just the 'label'.
                         - Pay attention to Output format.
                       Output:
-                        - <label>label</label>
+                        <label>label</label>
                       """;
 
         var result = await _localChat.SendMessage(prompt);
