@@ -1,40 +1,56 @@
-# Agent Patterns Project
+# 🧠 Agent Patterns in C#
 
-This project is an implementation of the design patterns proposed in the paper [Agent Design Pattern Catalogue: A Collection of Architectural Patterns for Foundation Model based Agents](https://arxiv.org/abs/2405.10467v3). The goal is to explore and implement these patterns to build robust and reusable agent-based systems.
+Welcome to the **Agent Patterns Project** — a hands-on, developer-friendly exploration of agent design patterns for foundation model-based systems.
 
-## Implemented Patterns
+This repository brings to life selected architectural patterns from the paper  
+**[Agent Design Pattern Catalogue: A Collection of Architectural Patterns for Foundation Model Based Agents](https://arxiv.org/abs/2405.10467v3)** by Yue Liu et al. (CSIRO Data61).
+
+🚀 **Goal**: Implement and experiment with agent behavior, memory handling, and goal inference using C# and local LLMs like LLaMA.  
+🧪 **Why?** This is a research-driven initiative to learn and explore how these patterns work in practice — not just theory.
+
+---
+
+## ✅ Implemented Patterns
 
 ### PassiveGoalCreator
-The `PassiveGoalCreator` pattern has been implemented as the first step in this project. Its purpose is to generate goals based on user input and contextual memory. For more details, refer to the documentation available in the file [PassiveGoalCreator](doc/PassiveGoalCreator.md).
+`PassiveGoalCreator` is the first pattern implemented in this project. It extracts user goals from natural language input by using contextual memory and a local LLaMA model.
 
-## Dependencies
+📄 [See pattern documentation](doc/PassiveGoalCreator.md)
+
+---
+
+## ⚙️ Dependencies
 
 ### Ollama
-This project relies on the [Ollama](https://ollama.com/) platform for running and interacting with foundation models. Follow the steps below to install and configure Ollama:
+We use [Ollama](https://ollama.com/) to run foundation models locally.
 
-1. Download and install Ollama from [https://ollama.com/download](https://ollama.com/download).
-2. Ensure the Ollama server is running locally. By default, it listens on `http://localhost:11434/`.
-3. Verify the installation by running:
+1. [Download Ollama](https://ollama.com/download)
+2. Ensure the server is running at `http://localhost:11434/`
+3. Verify with:
    ```bash
    ollama list
    ```
-   This command should display the available models.
-
-4. Optionally, download the required model (e.g., `llama3`) using:
+4. Pull the LLaMA 3 model:
    ```bash
    ollama pull llama3
    ```
 
-## How to Run
+---
 
-To execute the `PassiveGoalCreator` agent, use the following command:
+## ⚡ Quick Start
+
+Clone the repo, restore dependencies, and run the agent:
 
 ```bash
+# Run the PassiveGoalCreator agent
 dotnet run --project agent-patterns/src/PassiveGoalCreator/PassiveGoalCreator.csproj
 ```
 
-Ensure that the Ollama server is running before starting the application.
+✅ Make sure the Ollama server is running before launching the agent.
 
-## Future Work
+---
 
-This README will be updated as more patterns from the paper are implemented. Stay tuned for further developments!
+## 🔭 Future Work
+
+New patterns from the paper will be added iteratively.  
+Stay tuned — this project is evolving with each experiment and pull request!

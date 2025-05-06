@@ -7,7 +7,7 @@ public class LocalChat(string model = "llama3") : ILocalChat
     private IChatClient Client { get; } = new OllamaChatClient("http://localhost:11434/", model);
     private readonly List<ChatMessage> _chatHistory = [];
     
-    public async Task<string> SendMessage(string prompt)
+    public async Task<string?> SendMessage(string prompt)
     {
         _chatHistory.Add(new ChatMessage(ChatRole.User, prompt));
         var response = "";
