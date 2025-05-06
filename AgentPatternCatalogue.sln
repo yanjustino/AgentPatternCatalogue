@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{28A8FA00-B47C-4482-8A27-789FCE82F011}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PassiveGoalCreator", "src\PassiveGoalCreator\PassiveGoalCreator.csproj", "{262C16C3-CCD2-40AC-9582-B9A3AD5631EF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{DA2311ED-E1F3-46A0-A117-6731A724A5F3}"
+	ProjectSection(SolutionItems) = preProject
+		doc\PassiveGoalCreator.md = doc\PassiveGoalCreator.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "patterns", "patterns", "{E06C9CC0-BD70-41C6-AE9C-40DA6F1CC07D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{83936524-28C6-42EF-B361-475864DE36BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentCore", "AgentCore\AgentCore.csproj", "{EEB0CC01-943C-45D7-AB0A-C61FE7124846}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pt-br", "pt-br", "{764C31AA-696C-49F2-B358-16EFEC77B6EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E06C9CC0-BD70-41C6-AE9C-40DA6F1CC07D} = {28A8FA00-B47C-4482-8A27-789FCE82F011}
+		{262C16C3-CCD2-40AC-9582-B9A3AD5631EF} = {E06C9CC0-BD70-41C6-AE9C-40DA6F1CC07D}
+		{83936524-28C6-42EF-B361-475864DE36BF} = {28A8FA00-B47C-4482-8A27-789FCE82F011}
+		{EEB0CC01-943C-45D7-AB0A-C61FE7124846} = {83936524-28C6-42EF-B361-475864DE36BF}
+		{764C31AA-696C-49F2-B358-16EFEC77B6EA} = {DA2311ED-E1F3-46A0-A117-6731A724A5F3}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{262C16C3-CCD2-40AC-9582-B9A3AD5631EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{262C16C3-CCD2-40AC-9582-B9A3AD5631EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{262C16C3-CCD2-40AC-9582-B9A3AD5631EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{262C16C3-CCD2-40AC-9582-B9A3AD5631EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEB0CC01-943C-45D7-AB0A-C61FE7124846}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEB0CC01-943C-45D7-AB0A-C61FE7124846}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEB0CC01-943C-45D7-AB0A-C61FE7124846}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEB0CC01-943C-45D7-AB0A-C61FE7124846}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
