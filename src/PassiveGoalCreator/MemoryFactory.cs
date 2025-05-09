@@ -2,6 +2,9 @@ using Agents.Common;
 
 namespace PassiveGoalCreator;
 
+/// <summary>
+/// Provides factory methods to create and initialize instances of the <see cref="Memory"/> class.
+/// </summary>
 public static class MemoryFactory
 {
     private static readonly (string key, string value) RetrieveContext = ("tools",
@@ -32,6 +35,10 @@ public static class MemoryFactory
             }
         """);
 
+    /// <summary>
+    /// Creates a new instance of the Memory object and initializes it with merged context data.
+    /// </summary>
+    /// <returns>A new Memory object containing merged context data.</returns>
     public static Memory CreateMemory()
     {
         var memory = new Memory();

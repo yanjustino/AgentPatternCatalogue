@@ -2,6 +2,9 @@ using Agents.Common;
 
 namespace ProactiveGoalCreator;
 
+/// <summary>
+/// Provides a factory for creating instances of the Memory class with initialized context data.
+/// </summary>
 public static class MemoryFactory
 {
     private static readonly (string key, string value) RetrieveContext = ("tools",
@@ -31,8 +34,14 @@ public static class MemoryFactory
                 ]
             }
         """);
-    
 
+
+    /// <summary>
+    /// Creates and initializes a new instance of the Memory class.
+    /// The method retrieves context data, merges the retrieved data,
+    /// and stores the merged context within the created Memory instance.
+    /// </summary>
+    /// <returns>A newly created instance of the Memory class with stored context data.</returns>
     public static Memory CreateMemory()
     {
         var memory = new Memory();
