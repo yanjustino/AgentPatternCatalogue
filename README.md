@@ -13,9 +13,8 @@ This repository brings to life selected architectural patterns from the paper
 ## ✅ Implemented Patterns
 
 ### PassiveGoalCreator
-`PassiveGoalCreator` is the first pattern implemented in this project. It extracts user goals from natural language input by using contextual memory and a local LLaMA model.
-
-📄 [See pattern documentation](doc/PassiveGoalCreator.md)
+- 📄 [PassiveGoalCreator](doc/PassiveGoalCreator.md) is the first pattern implemented in this project. It extracts user goals from natural language input by using contextual memory and a local LLaMA model.
+- 📄 [ProactiveGoalCreator](doc/ProactiveGoalCreator.md) anticipates users’ goals by analysing human interactions and proactively capturing multimodal context through appropriate detectors, thereby enriching goal descriptions and improving accessibility.
 
 ---
 
