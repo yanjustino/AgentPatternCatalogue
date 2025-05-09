@@ -1,9 +1,9 @@
 using Agents.Common;
 using Agents.Common.Interfaces;
 
-namespace PassiveGoalCreator;
+namespace ProactiveGoalCreator;
 
-public partial class Agent(IDialogueInterface gui, GoalCreator goalCreator)
+public partial class Agent(IDialogueInterface gui, GoalCreator creator, IEnumerable<IContextDetector> detectors)
 {
     public async Task RunAsync()
     {
@@ -13,7 +13,6 @@ public partial class Agent(IDialogueInterface gui, GoalCreator goalCreator)
             if (stopAgent) break;
             
             var prompt = CreatePrompt(goal);
-            Console.WriteLine(prompt);
             await ExecutePrompt(prompt);
         }
 

@@ -1,10 +1,15 @@
 using Microsoft.Extensions.AI;
 
-namespace AgentCore;
+namespace Agents.Common;
 
-public class LocalChat(string model = "llama3") : ILocalChat
+public interface ILLm
 {
-    private IChatClient Client { get; } = new OllamaChatClient("http://localhost:11434/", model);
+    Task<string?> SendMessage(string prompt);
+}
+
+public class LLm(string model = "llama3") : ILLm
+{
+    private OllamaChatClient Client => new ("http://localhost:11434/", model);
     private readonly List<ChatMessage> _chatHistory = [];
     
     public async Task<string?> SendMessage(string prompt)

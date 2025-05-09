@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PassiveGoalCreator", "src\P
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{DA2311ED-E1F3-46A0-A117-6731A724A5F3}"
 	ProjectSection(SolutionItems) = preProject
-		doc\PassiveGoalCreator.md = doc\PassiveGoalCreator.md
+		doc\ProactiveGoalCreator.md = doc\ProactiveGoalCreator.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "patterns", "patterns", "{E06C9CC0-BD70-41C6-AE9C-40DA6F1CC07D}"
@@ -14,8 +14,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{83936524-28C6-42EF-B361-475864DE36BF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pt-br", "pt-br", "{764C31AA-696C-49F2-B358-16EFEC77B6EA}"
+	ProjectSection(SolutionItems) = preProject
+		doc\pt-br\PassiveGoalCreator.md = doc\pt-br\PassiveGoalCreator.md
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentCore", "src\AgentCore\AgentCore.csproj", "{3ABBD3F2-5536-4EC9-9691-7F2D342584DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agents.Common", "src\Agents.Common\Agents.Common.csproj", "{3ABBD3F2-5536-4EC9-9691-7F2D342584DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProactiveGoalCreator", "src\ProactiveGoalCreator\ProactiveGoalCreator.csproj", "{3511909F-5143-41EF-95F7-1340D8CB4614}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,6 +33,7 @@ Global
 		{83936524-28C6-42EF-B361-475864DE36BF} = {28A8FA00-B47C-4482-8A27-789FCE82F011}
 		{764C31AA-696C-49F2-B358-16EFEC77B6EA} = {DA2311ED-E1F3-46A0-A117-6731A724A5F3}
 		{3ABBD3F2-5536-4EC9-9691-7F2D342584DC} = {83936524-28C6-42EF-B361-475864DE36BF}
+		{3511909F-5143-41EF-95F7-1340D8CB4614} = {E06C9CC0-BD70-41C6-AE9C-40DA6F1CC07D}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{262C16C3-CCD2-40AC-9582-B9A3AD5631EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -38,5 +44,9 @@ Global
 		{3ABBD3F2-5536-4EC9-9691-7F2D342584DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3ABBD3F2-5536-4EC9-9691-7F2D342584DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3ABBD3F2-5536-4EC9-9691-7F2D342584DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3511909F-5143-41EF-95F7-1340D8CB4614}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3511909F-5143-41EF-95F7-1340D8CB4614}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3511909F-5143-41EF-95F7-1340D8CB4614}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3511909F-5143-41EF-95F7-1340D8CB4614}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
