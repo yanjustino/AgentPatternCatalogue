@@ -4,7 +4,7 @@ using Agents.Common;
 using Agents.Common.Interfaces;
 using ProactiveGoalCreator;
 
-Console.WriteLine("=== Passive Goal Creator Agent (LLaMA + CLI) ===");
+Console.WriteLine("=== Proactive Goal Creator Agent (LLaMA + CLI) ===");
 
 var dialog = new DialogueInterface();
 var memory = MemoryFactory.CreateMemory();
