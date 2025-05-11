@@ -9,7 +9,7 @@ namespace PassiveGoalCreator;
 /// based on a provided goal using specific formatting and instructions.
 /// Implements the IPromptOptimiser interface.
 /// </summary>
-public class Prompt : IPromptOptimiser
+public class Optimiser : IPromptOptimiser
 {
     /// <summary>
     /// Generates a structured and optimized prompt based on the provided agent goal.

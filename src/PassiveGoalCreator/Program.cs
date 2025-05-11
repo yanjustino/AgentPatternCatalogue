@@ -8,7 +8,7 @@ var url = Environment.GetEnvironmentVariable("LLM_URL") ?? "http://localhost:114
 
 var context = AgentContext.Default();
 var creator = new Creator(context);
-var prompts = new Prompt();
+var prompts = new Optimiser();
 var clients = AgentLLmClient.Create(url, model);
 
 var agentAi = new Agent(creator, clients, prompts);
