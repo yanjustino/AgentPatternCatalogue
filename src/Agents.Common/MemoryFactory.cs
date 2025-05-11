@@ -1,6 +1,6 @@
-using Agents.Common;
+using Agents.Common.Interfaces;
 
-namespace ProactiveGoalCreator;
+namespace Agents.Common;
 
 /// <summary>
 /// Provides a factory for creating instances of the Memory class with initialized context data.
@@ -35,6 +35,7 @@ public static class MemoryFactory
             }
         """);
 
+    public static IMemoryStore CreateEmptyMemoryStore() => new MemoryStory();
 
     /// <summary>
     /// Creates and initializes a new instance of the Memory class.
@@ -42,10 +43,10 @@ public static class MemoryFactory
     /// and stores the merged context within the created Memory instance.
     /// </summary>
     /// <returns>A newly created instance of the Memory class with stored context data.</returns>
-    public static Memory CreateMemory()
+    public static IMemoryStore CreateDefaultMemory()
     {
-        var memory = new Memory();
-        memory.StoreContext(ContextData.MergeAll(RetrieveContext));
+        var memory = new MemoryStory();
+        memory.StoreContext(AgentContextData.MergeAll(RetrieveContext));
         return memory;
     }
 }

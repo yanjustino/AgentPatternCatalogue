@@ -1,15 +1,17 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-using Agents.Common;
-using Agents.Common.Interfaces;
+﻿using Agents.Common;
 using ProactiveGoalCreator;
 
 Console.WriteLine("=== Proactive Goal Creator Agent (LLaMA + CLI) ===");
 
-var dialog = new DialogueInterface();
-var memory = MemoryFactory.CreateMemory();
-var creator = new GoalCreator(dialog, memory);
-IEnumerable<IContextDetector> detectors = new List<IContextDetector>() { new ScreenContextDetector() };
+var model = Environment.GetEnvironmentVariable("LLM_MODEL") ?? "phi3:mini";
+var url = Environment.GetEnvironmentVariable("LLM_URL") ?? "http://localhost:11434";
 
-var agent = new Agent(dialog, creator, detectors);
-await agent.RunAsync();
+var context = AgentContext.Default();
+var creator = new Creator(context, [ new Detector() ]);
+var prompts = new Prompt();
+var clients = AgentLLmClient.Create(url, model);
+
+var agentAi = new Agent(creator, clients, prompts);
+await agentAi.RunAsync();
+
+Console.WriteLine("\n[Agent] Shutting down.");

@@ -9,11 +9,11 @@ public interface IMemoryStore
     ///  Retrieves the context data from the memory store.
     /// </summary>
     /// <returns>The context data.</returns>
-    ContextData RetrieveContext();
+    AgentContextData RetrieveContext();
 
     /// <summary>
     /// Stores the context data in the memory store.
     /// </summary>
-    /// <param name="context">The context data to store.</param>
-    void StoreContext(ContextData context);
+    /// <param name="agentContext">The context data to store.</param>
+    void StoreContext(AgentContextData agentContext);
 }

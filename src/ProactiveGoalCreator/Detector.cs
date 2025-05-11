@@ -7,18 +7,18 @@ namespace ProactiveGoalCreator;
 /// Detects and captures the current screen context including active window information, visible user interface elements, and a timestamp.
 /// Implements the <see cref="IContextDetector"/> interface.
 /// </summary>
-public class ScreenContextDetector: IContextDetector
+public class Detector: IContextDetector
 {
     /// <summary>
     /// Captures the current screen context, including active window information, visible UI elements, and a timestamp.
     /// </summary>
     /// <returns>
-    /// A <see cref="ContextData"/> object containing captured screen context data like active window title, visible UI elements,
+    /// A <see cref="AgentContextData"/> object containing captured screen context data like active window title, visible UI elements,
     /// and screenshot timestamp.
     /// </returns>
-    public ContextData Capture()
+    public AgentContextData Capture()
     {
-        var context = new ContextData();
+        var context = new AgentContextData();
 
         // Simulação de leitura da tela
         var activeWindow = GetActiveWindowTitle();

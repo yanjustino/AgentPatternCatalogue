@@ -7,9 +7,9 @@ namespace Agents.Common;
 /// Represents a language model interface using the LLm client for handling chat-based interactions.
 /// This class allows interaction with a language model by sending prompts and receiving responses.
 /// </summary>
-public class LLm(string model = "llama3") : ILLm
+public partial class AgentLLmClient : IAgentLLmClient
 {
-    private OllamaChatClient Client => new ("http://localhost:11434/", model);
+    private IChatClient? Client { get; init; }
     private readonly List<ChatMessage> _chatHistory = [];
 
     /// <summary>
@@ -22,11 +22,34 @@ public class LLm(string model = "llama3") : ILLm
     {
         _chatHistory.Add(new ChatMessage(ChatRole.User, prompt));
         var response = "";
-        await foreach(var item in Client.GetStreamingResponseAsync(_chatHistory))
+        await foreach (var item in Client.GetStreamingResponseAsync(_chatHistory))
         {
             response += item;
         }
+
         _chatHistory.Add(new ChatMessage(ChatRole.Assistant, response));
         return response;
     }
+}
+
+/// <summary>
+/// Provides a client implementation for interacting with a language model.
+/// This class includes support for creating clients with specific configurations, such as custom endpoints or default models.
+/// </summary>
+public partial class AgentLLmClient
+{
+    public static IAgentLLmClient Create(IChatClient? chatClient) => new AgentLLmClient
+    {
+        Client = chatClient
+    };
+
+    public static IAgentLLmClient Create(string? endpoint = null, string? model = null) => new AgentLLmClient
+    {
+        Client = new OllamaChatClient(endpoint ?? "http://localhost:11434", model ?? "llama3")
+    };
+
+    public static IAgentLLmClient CreateDefault(string? model = null) => new AgentLLmClient
+    {
+        Client = new OllamaChatClient("http://localhost:11434", model ?? "llama3")
+    };
 }

@@ -5,7 +5,7 @@ namespace Agents.Common;
 /// <summary>
 /// Represents a simple console-based dialogue interface.
 /// </summary>
-public class DialogueInterface : IDialogueInterface
+public class AgentGui : IAgentGui
 {
     /// <summary>
     /// Prompts the user for input and generates a corresponding goal based on the input.
@@ -14,11 +14,11 @@ public class DialogueInterface : IDialogueInterface
     /// A tuple containing a boolean indicating whether the user wishes to exit,
     /// and a Goal object encapsulating the user's input and an optional context.
     /// </returns>
-    public (bool exit, Goal goal) GetUserPrompt()
+    public AgentGoal? GetUserPrompt()
     {
         Console.Write("\n> Enter your prompt (or type 'exit'): ");
         var input = Console.ReadLine();
-        return IsInvalidValidInput(input) ? (true, new Goal(input, null)) : (false, new Goal(input, null));
+        return IsInvalidValidInput(input) ? null : new AgentGoal(input, null);
     }
 
     /// <summary>
@@ -37,5 +37,5 @@ public class DialogueInterface : IDialogueInterface
     /// </summary>
     /// <param name="message">The message to be displayed to the user.</param>
     public void Notify(string message)
-        => Console.WriteLine($"\n[Agent] {message}");
+        => Console.WriteLine($"[Agent] {message}");
 }

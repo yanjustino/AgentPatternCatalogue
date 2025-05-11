@@ -5,5 +5,5 @@ namespace Agents.Common.Interfaces;
 /// </summary>
 public interface IContextDetector
 {
-        ContextData Capture();
+        AgentContextData Capture();
 }

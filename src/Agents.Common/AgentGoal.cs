@@ -5,4 +5,4 @@ namespace Agents.Common;
 /// </summary>
 /// <param name="Intent">The main intent or objective of the goal.</param>
 /// <param name="Context">The contextual data associated with the goal, if any.</param>
-public record Goal(string? Intent, ContextData? Context);
+public record AgentGoal(string? Intent, AgentContextData? Context);

@@ -16,7 +16,7 @@ namespace PassiveGoalCreator;
 /// - Executing tasks associated with the generated prompts.
 /// - Shutting down gracefully upon user request.
 /// </remarks>
-public partial class Agent(IDialogueInterface gui, GoalCreator goalCreator)
+public class Agent(Creator creator, IAgentLLmClient llm, IPromptOptimiser optimiser)
 {
     /// <summary>
     /// Runs the main execution loop for the agent asynchronously.
@@ -30,14 +30,34 @@ public partial class Agent(IDialogueInterface gui, GoalCreator goalCreator)
     {
         while (true)
         {
-            var (stopAgent, goal) = gui.GetUserPrompt();
-            if (stopAgent) break;
+            var goal = creator.GenerateGoal();
+            if (goal is null) break;
             
-            var prompt = CreatePrompt(goal);
-            Console.WriteLine(prompt);
-            await ExecutePrompt(prompt);
+            var promptString = optimiser.OptimisePrompt(goal);
+            await ExecutePrompt(promptString);
         }
+    }
 
-        Console.WriteLine("\n[Agent] Shutting down.");
+    /// <summary>
+    /// Executes the given prompt by querying the local language model and processing the response.
+    /// </summary>
+    /// <param name="prompt">The input string containing the query to be processed by the language model.</param>
+    /// <returns>A task representing the asynchronous operation of executing the prompt and outputting the result.</returns>
+    private async Task ExecutePrompt(string? prompt)
+    {
+        if (string.IsNullOrWhiteSpace(prompt))
+        {
+            creator.Context.AgentGui.Notify("[ProactiveGoalCreator] No prompt provided.");
+            return;
+        }
+        
+        var gui = creator.Context.AgentGui;
+
+        gui.Notify("[PassiveGoalCreator] Querying local LLaMA...");
+
+        var result = await llm.SendMessage(prompt);
+        var text = optimiser.OptimiseResponse(result?.Trim() ?? "[no response]");
+
+        gui.Notify($"[Identified Goal] {text}");
     }
 }

@@ -5,7 +5,7 @@ namespace Agents.Common;
 /// <summary>
 /// Represents a collection of context data.
 /// </summary>
-public class ContextData
+public class AgentContextData
 {
     public Dictionary<string, string> Data { get; } = new();
 
@@ -13,7 +13,7 @@ public class ContextData
     /// Merges the current context data with the provided context data.
     /// </summary>
     /// <param name="other">The other context data to be merged.</param>
-    public void Merge(ContextData? other)
+    public void Merge(AgentContextData? other)
     {
         if (other == null) return;
         foreach (var kv in other.Data)
@@ -25,9 +25,9 @@ public class ContextData
     /// </summary>
     /// <param name="contexts">An array of ContextData instances to be merged.</param>
     /// <returns>A new ContextData instance containing the combined data from all provided contexts.</returns>
-    public static ContextData MergeAll(params ContextData[] contexts)
+    public static AgentContextData MergeAll(params AgentContextData[] contexts)
     {
-        var merged = new ContextData();
+        var merged = new AgentContextData();
         foreach (var ctx in contexts) merged.Merge(ctx);
         return merged;
     }
@@ -36,10 +36,10 @@ public class ContextData
     /// Merges multiple context data instances into a single context data instance.
     /// </summary>
     /// <param name="contexts">An array of key-value pairs representing context data to be merged.</param>
-    /// <returns>A merged instance of <see cref="ContextData"/> containing all provided context data.</returns>
-    public static ContextData MergeAll(params (string key, string value)[] contexts)
+    /// <returns>A merged instance of <see cref="AgentContextData"/> containing all provided context data.</returns>
+    public static AgentContextData MergeAll(params (string key, string value)[] contexts)
     {
-        var merged = new ContextData();
+        var merged = new AgentContextData();
         foreach (var ctx in contexts)
             merged.Data[ctx.key] = ctx.value;
         return merged;
