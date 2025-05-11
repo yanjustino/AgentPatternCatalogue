@@ -12,10 +12,9 @@ This repository brings to life selected architectural patterns from the paper
 
 ## ✅ Implemented Patterns
 
-### PassiveGoalCreator
 - 📄 [PassiveGoalCreator](doc/PassiveGoalCreator.md) is the first pattern implemented in this project. It extracts user goals from natural language input by using contextual memory and a local LLaMA model.
 - 📄 [ProactiveGoalCreator](doc/ProactiveGoalCreator.md) anticipates users’ goals by analysing human interactions and proactively capturing multimodal context through appropriate detectors, thereby enriching goal descriptions and improving accessibility.
-
+- 📄 [PromptResponseOptimiser](doc/PromptResponseOptimiser.md) is a pattern designed to enhance the interaction between agents and large language models (LLMs). It refines goals and contextual information into optimized prompts, ensuring that the LLM produces accurate, relevant, and goal-aligned responses. 
 ---
 
 ## ⚙️ Dependencies
@@ -29,9 +28,9 @@ We use [Ollama](https://ollama.com/) to run foundation models locally.
    ```bash
    ollama list
    ```
-4. Pull the LLaMA 3 model:
+4. Pull the phi3:mini model:
    ```bash
-   ollama pull llama3
+   ollama pull phi3:mini
    ```
 
 ---
