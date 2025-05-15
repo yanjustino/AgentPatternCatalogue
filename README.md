@@ -14,7 +14,8 @@ This repository brings to life selected architectural patterns from the paper
 
 - 📄 [PassiveGoalCreator](doc/PassiveGoalCreator.md) is the first pattern implemented in this project. It extracts user goals from natural language input by using contextual memory and a local LLaMA model.
 - 📄 [ProactiveGoalCreator](doc/ProactiveGoalCreator.md) anticipates users’ goals by analysing human interactions and proactively capturing multimodal context through appropriate detectors, thereby enriching goal descriptions and improving accessibility.
-- 📄 [PromptResponseOptimiser](doc/PromptResponseOptimiser.md) is a pattern designed to enhance the interaction between agents and large language models (LLMs). It refines goals and contextual information into optimized prompts, ensuring that the LLM produces accurate, relevant, and goal-aligned responses. 
+- 📄 [PromptResponseOptimiser](doc/PromptResponseOptimiser.md) is a pattern designed to enhance the interaction between agents and large language models (LLMs). It refines goals and contextual information into optimized prompts, ensuring that the LLM produces accurate, relevant, and goal-aligned responses.
+- 📄 [RetrievalAugmentedGeneration (RAG)](doc/RetrievalAugmentedGeneration.md) is a pattern that combines retrieval and generation techniques to enhance the performance of large language models (LLMs). It retrieves relevant information from a knowledge base and uses it to generate more accurate and contextually relevant responses.
 ---
 
 ## ⚙️ Dependencies
@@ -30,7 +31,7 @@ We use [Ollama](https://ollama.com/) to run foundation models locally.
    ```
 4. Pull the phi3:mini model:
    ```bash
-   ollama pull phi3:mini
+   ollama pull phi4-mini:latest
    ```
 
 ---
@@ -41,7 +42,7 @@ Clone the repo, restore dependencies, and run the agent:
 
 ```bash
 # Run the PassiveGoalCreator agent
-dotnet run --project agent-patterns/src/PassiveGoalCreator/PassiveGoalCreator.csproj
+dotnet run --project agent-patterns/src/<<patter>>/<<pattern>>.csproj
 ```
 
 ✅ Make sure the Ollama server is running before launching the agent.

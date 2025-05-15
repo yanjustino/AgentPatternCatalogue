@@ -5,26 +5,25 @@ The **Retrieval-Augmented Generation (RAG)** pattern enhances the agent’s know
 
 ```mermaid
 flowchart TD
-    U[User] <-->|prompt| Dlg{{ Dialogue <br>Interface }}
-    PG[Creator <br>Plan generation]
+    U[User] <-->|prompt/response| Dlg{{ Dialogue <br>Interface }}
+    PG[Plan generation]
     TE[Retriever <br>Task executor]
     VS[(Vector store<br/>local)]
     LLM[LLM <br>Hosted]
-    
+
     subgraph AGENT [Agent]
-        Dlg --> RAG[RAG Agent]
-        RAG -->|goal| PRE[Prompt/Response <br>Engineering]
+        subgraph CREATOR [Creator]
+            PG --> TE
+            PG --> |Create Plan| LLMa[LLM <br>Plan]
+        end
+
+        Dlg <--> RAG[RAG Agent]
+        RAG -->|goal| PRE[Prompt/Response <br>Optimiser]
         RAG -->|requirements| PG
-        RAG -- notification --> Dlg
-        PG --> TE
-        PG --> |Create Plan| LLMa[LLM <br>Plan]
-        PRE --> LLM
+        RAG -->|prompt| LLM
     end
     TE --> VS
 ```
-
-
-
 
 ## Context
 Foundation models typically do not have access to domain-specific or private knowledge unless explicitly trained with it. This makes them less effective for specialized or sensitive tasks.
