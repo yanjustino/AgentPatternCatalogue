@@ -1,5 +1,7 @@
 using Agents.Common;
 using Agents.Common.Interfaces;
+using Agents.Common.Models;
+using Agents.Common.Storage;
 
 namespace ProactiveGoalCreator;
 
@@ -16,14 +18,14 @@ public class Creator(AgentContext context, IEnumerable<IContextDetector> detecto
     /// The method combines information from user dialogue, retrieved memory, and context detectors to create
     /// a comprehensive goal representation.
     /// </summary>
-    /// <returns>A synthesized <see cref="AgentGoal"/> object if the inputs are valid; otherwise, null.</returns>
-    public AgentGoal? GenerateGoal()
+    /// <returns>A synthesized <see cref="Goal"/> object if the inputs are valid; otherwise, null.</returns>
+    public Goal? GenerateGoal()
     {
         var prompt = Context.AgentGui.GetUserPrompt();
         if (prompt is null) return null;
         
         var memoryContext = Context.MemoryStore.RetrieveContext();
-        var multimodalContext = new AgentContextData();
+        var multimodalContext = new ContextData();
         
         foreach (var detector in detectors)
         {
@@ -34,7 +36,7 @@ public class Creator(AgentContext context, IEnumerable<IContextDetector> detecto
         if (multimodalContext.Data.Count != 0)
             Context.AgentGui.Notify("Multimodal context has been captured to improve goal understanding.");
         
-        var merged = AgentContextData.MergeAll(prompt.Context!, memoryContext, multimodalContext);
+        var merged = ContextData.MergeAll(prompt.Context!, memoryContext, multimodalContext);
         return prompt with { Context = merged };
     }
 }

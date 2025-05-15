@@ -1,6 +1,6 @@
 using Agents.Common.Interfaces;
 
-namespace Agents.Common;
+namespace Agents.Common.Storage;
 
 /// <summary>
 /// Provides a factory for creating instances of the Memory class with initialized context data.
@@ -46,7 +46,7 @@ public static class MemoryFactory
     public static IMemoryStore CreateDefaultMemory()
     {
         var memory = new MemoryStory();
-        memory.StoreContext(AgentContextData.MergeAll(RetrieveContext));
+        memory.StoreContext(ContextData.MergeAll(RetrieveContext));
         return memory;
     }
 }

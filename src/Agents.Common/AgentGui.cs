@@ -1,4 +1,5 @@
 using Agents.Common.Interfaces;
+using Agents.Common.Models;
 
 namespace Agents.Common;
 
@@ -14,11 +15,11 @@ public class AgentGui : IAgentGui
     /// A tuple containing a boolean indicating whether the user wishes to exit,
     /// and a Goal object encapsulating the user's input and an optional context.
     /// </returns>
-    public AgentGoal? GetUserPrompt()
+    public Goal? GetUserPrompt()
     {
         Console.Write("\n> Enter your prompt (or type 'exit'): ");
         var input = Console.ReadLine();
-        return IsInvalidValidInput(input) ? null : new AgentGoal(input, null);
+        return IsInvalidValidInput(input) ? null : new Goal(input, null);
     }
 
     /// <summary>

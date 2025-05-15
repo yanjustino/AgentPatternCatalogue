@@ -1,0 +1,20 @@
+﻿version: "3.8"
+
+services:
+  qdrant:
+    image: qdrant/qdrant:latest   # sempre puxe a última estável
+    container_name: qdrant
+    restart: always
+    ports:
+      - "6333:6333"   # REST
+      - "6334:6334"   # gRPC
+    volumes:
+      - qdrant_data:/qdrant/storage         # dados persistentes
+    environment:
+      # porta gRPC explícita (útil para alguns SDKs)
+      QDRANT__SERVICE__GRPC_PORT: 6334
+      # descomente se quiser otimizar uso de RAM
+      # QDRANT__STORAGE__OPTIMIZE_RAM: "true"
+
+volumes:
+  qdrant_data:

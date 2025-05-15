@@ -1,3 +1,5 @@
+using Agents.Common.Models;
+
 namespace Agents.Common.Interfaces;
 
 /// <summary>
@@ -5,6 +7,6 @@ namespace Agents.Common.Interfaces;
 /// </summary>
 public interface IAgentGui
 {
-    public AgentGoal? GetUserPrompt();
+    public Goal? GetUserPrompt();
     public void Notify(string message);
 }

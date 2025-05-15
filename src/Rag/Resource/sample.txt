@@ -1,0 +1,9 @@
+Pagamentos Instantâneos no Brasil
+O Pix, lançado oficialmente em novembro de 2020 pelo Banco Central,
+transformou o ecossistema de meios de pagamento ao permitir liquidações
+em tempo real, 24 horas por dia, sete dias por semana…
+
+Principais marcos:
+• 2021‑02‑15 – Pix agendado apresentado em beta.
+• 2022‑03‑29 – Limite de valor por faixa de horário é flexibilizado.
+• 2023‑10‑31 – Início da fase de Open Finance com integração ao Pix.

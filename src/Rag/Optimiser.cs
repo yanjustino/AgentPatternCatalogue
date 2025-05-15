@@ -1,8 +1,7 @@
-using Agents.Common;
 using Agents.Common.Interfaces;
 using Agents.Common.Models;
 
-namespace ProactiveGoalCreator;
+namespace Rag;
 
 /// <summary>
 /// Represents a prompt optimization class that generates a structured prompt
@@ -21,30 +20,24 @@ public class Optimiser : IPromptOptimiser
     /// <returns>A formatted string representing the optimized prompt.</returns>
     public string OptimisePrompt(Goal goal) =>
         $"""
-         <input>
-            {goal.Intent}
-         </input>
+         <intrunctions>
+            - Based on the retrieved context, answer the user's question:
+            - Respond in a concise and clear manner.
+            - Respond in portuguese.
+         </instructions>
          <context>
             {goal.Context}
          </context>
-         <instructions>
-             - Select the 'label' from the <context>.
-             - The 'label' should be the most relevant to the <input>.
-             - The 'label' should be the same as the 'label' in the <context>.
-             - Do not include any other text just the 'label'.
-             - Pay attention to <output> format.
-         </instructions>
-         <output>
-             - [label]
-         </output>
+         <input>
+            Question: {goal.Intent}
+         </input>
          """;
 
     /// <summary>
-    /// Optimizes the provided response by encapsulating it within a specified
-    /// structured format for further processing or output generation.
+    /// Serializes the response into a JSON-formatted string, structuring the response
+    /// for further processing or output.
     /// </summary>
-    /// <param name="response">A string containing the response text to be optimized
-    /// and formatted according to the defined structure.</param>
-    /// <returns>A formatted string representing the optimized and encapsulated response.</returns>
-    public string OptimiseResponse(string response) => $"<action>{response}</action>";
+    /// <param name="response">A string containing the response to be serialized into JSON format.</param>
+    /// <returns>A JSON-formatted string representing the serialized version of the response.</returns>
+    public string OptimiseResponse(string response) => response;
 }

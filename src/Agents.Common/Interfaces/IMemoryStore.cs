@@ -1,3 +1,6 @@
+using Agents.Common.Models;
+using Agents.Common.Storage;
+
 namespace Agents.Common.Interfaces;
 
 /// <summary>
@@ -9,11 +12,11 @@ public interface IMemoryStore
     ///  Retrieves the context data from the memory store.
     /// </summary>
     /// <returns>The context data.</returns>
-    AgentContextData RetrieveContext();
+    ContextData RetrieveContext();
 
     /// <summary>
     /// Stores the context data in the memory store.
     /// </summary>
-    /// <param name="agentContext">The context data to store.</param>
-    void StoreContext(AgentContextData agentContext);
+    /// <param name="context">The context data to store.</param>
+    void StoreContext(ContextData context);
 }

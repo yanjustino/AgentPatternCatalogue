@@ -1,5 +1,7 @@
 using Agents.Common;
 using Agents.Common.Interfaces;
+using Agents.Common.Models;
+using Agents.Common.Storage;
 
 namespace ProactiveGoalCreator;
 
@@ -13,12 +15,12 @@ public class Detector: IContextDetector
     /// Captures the current screen context, including active window information, visible UI elements, and a timestamp.
     /// </summary>
     /// <returns>
-    /// A <see cref="AgentContextData"/> object containing captured screen context data like active window title, visible UI elements,
+    /// A <see cref="ContextData"/> object containing captured screen context data like active window title, visible UI elements,
     /// and screenshot timestamp.
     /// </returns>
-    public AgentContextData Capture()
+    public ContextData Capture()
     {
-        var context = new AgentContextData();
+        var context = new ContextData();
 
         // Simulação de leitura da tela
         var activeWindow = GetActiveWindowTitle();

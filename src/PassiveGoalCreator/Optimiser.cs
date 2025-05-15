@@ -1,6 +1,7 @@
 using System.Text.Json;
 using Agents.Common;
 using Agents.Common.Interfaces;
+using Agents.Common.Models;
 
 namespace PassiveGoalCreator;
 
@@ -16,10 +17,10 @@ public class Optimiser : IPromptOptimiser
     /// The method organizes the goal data into an input, context, instructions,
     /// and output format to create a clearly defined prompt suitable for processing.
     /// </summary>
-    /// <param name="goal">An instance of <see cref="AgentGoal"/> that contains the intent
+    /// <param name="goal">An instance of <see cref="Goal"/> that contains the intent
     /// and contextual information related to the specific goal.</param>
     /// <returns>A formatted string representing the optimized prompt.</returns>
-    public string OptimisePrompt(AgentGoal goal) =>
+    public string OptimisePrompt(Goal goal) =>
         $"""
          <input>
             {goal.Intent}

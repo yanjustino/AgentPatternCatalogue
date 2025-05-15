@@ -1,3 +1,6 @@
+using Agents.Common.Models;
+using Agents.Common.Storage;
+
 namespace Agents.Common.Interfaces;
 
 /// <summary>
@@ -5,5 +8,5 @@ namespace Agents.Common.Interfaces;
 /// </summary>
 public interface IContextDetector
 {
-        AgentContextData Capture();
+        ContextData Capture();
 }

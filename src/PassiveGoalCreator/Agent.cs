@@ -16,7 +16,7 @@ namespace PassiveGoalCreator;
 /// - Executing tasks associated with the generated prompts.
 /// - Shutting down gracefully upon user request.
 /// </remarks>
-public class Agent(Creator creator, IAgentLLmClient llm, IPromptOptimiser optimiser)
+public class Agent(Creator creator, ILLmClient llm, IPromptOptimiser optimiser)
 {
     /// <summary>
     /// Runs the main execution loop for the agent asynchronously.

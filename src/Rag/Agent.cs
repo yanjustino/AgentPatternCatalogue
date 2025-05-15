@@ -1,8 +1,10 @@
-using Agents.Common;
 using Agents.Common.Interfaces;
 
-namespace ProactiveGoalCreator;
+namespace Rag;
 
+/// <summary>
+/// Represents an agent that processes user prompts and generates goals asynchronously.
+/// </summary>
 public class Agent(Creator creator, ILLmClient llm, IPromptOptimiser optimiser)
 {
     /// <summary>
@@ -13,7 +15,7 @@ public class Agent(Creator creator, ILLmClient llm, IPromptOptimiser optimiser)
     {
         while (true)
         {
-            var goal = creator.GenerateGoal();
+            var goal = await creator.GenerateGoalAsync();
             if (goal is null) break;
 
             var promptString = optimiser.OptimisePrompt(goal);
@@ -30,17 +32,17 @@ public class Agent(Creator creator, ILLmClient llm, IPromptOptimiser optimiser)
     {
         if (string.IsNullOrWhiteSpace(prompt))
         {
-            creator.Context.AgentGui.Notify("[ProactiveGoalCreator] No prompt provided.");
+            creator.Context.AgentGui.Notify("[Rag] No prompt provided.");
             return;
         }
 
         var gui = creator.Context.AgentGui;
         
-        gui.Notify("[ProactiveGoalCreator] Querying local LLaMA...");
+        gui.Notify("[Rag] Querying local LLaMA...");
 
         var result = await llm.SendMessage(prompt);
         var text = optimiser.OptimiseResponse(result?.Trim() ?? "[no response]");
 
-        gui.Notify($"[Identified Goal] {text}");
+        gui.Notify($"[result] {text}");
     }
 }

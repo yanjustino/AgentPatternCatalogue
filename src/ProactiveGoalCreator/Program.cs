@@ -3,13 +3,11 @@ using ProactiveGoalCreator;
 
 Console.WriteLine("=== Proactive Goal Creator Agent (LLaMA + CLI) ===");
 
-var model = Environment.GetEnvironmentVariable("LLM_MODEL") ?? "phi3:mini";
-var url = Environment.GetEnvironmentVariable("LLM_URL") ?? "http://localhost:11434";
-
 var context = AgentContext.Default();
 var creator = new Creator(context, [ new Detector() ]);
 var prompts = new Optimiser();
-var clients = AgentLLmClient.Create(url, model);
+var clients = LLmClient.Create("http://localhost:11434", "phi4-mini");
+
 
 var agentAi = new Agent(creator, clients, prompts);
 await agentAi.RunAsync();

@@ -12,6 +12,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agents.Common", "src\Agents
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProactiveGoalCreator", "src\ProactiveGoalCreator\ProactiveGoalCreator.csproj", "{3511909F-5143-41EF-95F7-1340D8CB4614}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rag", "src\Rag\Rag.csproj", "{5CE12D73-3FA1-47F3-90BA-A0EE9BDCC65D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{57982C60-AF14-43B4-8328-9B9D8F415184}"
+	ProjectSection(SolutionItems) = preProject
+		compose.yaml = compose.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +30,7 @@ Global
 		{83936524-28C6-42EF-B361-475864DE36BF} = {28A8FA00-B47C-4482-8A27-789FCE82F011}
 		{3ABBD3F2-5536-4EC9-9691-7F2D342584DC} = {83936524-28C6-42EF-B361-475864DE36BF}
 		{3511909F-5143-41EF-95F7-1340D8CB4614} = {E06C9CC0-BD70-41C6-AE9C-40DA6F1CC07D}
+		{5CE12D73-3FA1-47F3-90BA-A0EE9BDCC65D} = {E06C9CC0-BD70-41C6-AE9C-40DA6F1CC07D}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{262C16C3-CCD2-40AC-9582-B9A3AD5631EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -37,5 +45,9 @@ Global
 		{3511909F-5143-41EF-95F7-1340D8CB4614}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3511909F-5143-41EF-95F7-1340D8CB4614}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3511909F-5143-41EF-95F7-1340D8CB4614}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CE12D73-3FA1-47F3-90BA-A0EE9BDCC65D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CE12D73-3FA1-47F3-90BA-A0EE9BDCC65D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CE12D73-3FA1-47F3-90BA-A0EE9BDCC65D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CE12D73-3FA1-47F3-90BA-A0EE9BDCC65D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
