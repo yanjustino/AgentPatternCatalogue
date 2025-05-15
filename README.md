@@ -12,10 +12,10 @@ This repository brings to life selected architectural patterns from the paper
 
 ## ✅ Implemented Patterns
 
-- 📄 [PassiveGoalCreator](doc/PassiveGoalCreator.md) is the first pattern implemented in this project. It extracts user goals from natural language input by using contextual memory and a local LLaMA model.
-- 📄 [ProactiveGoalCreator](doc/ProactiveGoalCreator.md) anticipates users’ goals by analysing human interactions and proactively capturing multimodal context through appropriate detectors, thereby enriching goal descriptions and improving accessibility.
-- 📄 [PromptResponseOptimiser](doc/PromptResponseOptimiser.md) is a pattern designed to enhance the interaction between agents and large language models (LLMs). It refines goals and contextual information into optimized prompts, ensuring that the LLM produces accurate, relevant, and goal-aligned responses.
-- 📄 [RetrievalAugmentedGeneration (RAG)](doc/RetrievalAugmentedGeneration.md) is a pattern that combines retrieval and generation techniques to enhance the performance of large language models (LLMs). It retrieves relevant information from a knowledge base and uses it to generate more accurate and contextually relevant responses.
+- 📄 [Passive Goal Creator](doc/PassiveGoalCreator.md) is the first pattern implemented in this project. It extracts user goals from natural language input by using contextual memory and a local LLaMA model.
+- 📄 [Proactive Goal Creator](doc/ProactiveGoalCreator.md) anticipates users’ goals by analysing human interactions and proactively capturing multimodal context through appropriate detectors, thereby enriching goal descriptions and improving accessibility.
+- 📄 [Prompt Response Optimiser](doc/PromptResponseOptimiser.md) is a pattern designed to enhance the interaction between agents and large language models (LLMs). It refines goals and contextual information into optimized prompts, ensuring that the LLM produces accurate, relevant, and goal-aligned responses.
+- 📄 [Retrieval Augmented Generation (RAG)](doc/RetrievalAugmentedGeneration.md) is a pattern that combines retrieval and generation techniques to enhance the performance of large language models (LLMs). It retrieves relevant information from a knowledge base and uses it to generate more accurate and contextually relevant responses.
 ---
 
 ## ⚙️ Dependencies

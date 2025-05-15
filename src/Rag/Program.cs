@@ -7,7 +7,9 @@ using Rag.Core;
 Console.WriteLine("=== Retrieval Augmented Generator Agent (LLaMA + ONNX) ===");
 
 // EMBEDDING
+// https://huggingface.co/intfloat/e5-small-v2/blob/main/model.onnx
 var modelPath = Path.Combine(Environment.CurrentDirectory, "resource", "model.onnx");
+// https://huggingface.co/intfloat/e5-small-v2/blob/main/vocab.txt
 var vocabPath = Path.Combine(Environment.CurrentDirectory, "resource", "vocab.txt");
 var samplPath = Path.Combine(Environment.CurrentDirectory, "resource", "sample.txt");
 var embedding = new Embedding(modelPath, new Tokenizer(vocabPath));
