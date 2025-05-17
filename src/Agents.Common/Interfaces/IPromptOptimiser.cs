@@ -1,4 +1,4 @@
-using Agents.Common.Models;
+using Agents.Common.Results;
 
 namespace Agents.Common.Interfaces;
 

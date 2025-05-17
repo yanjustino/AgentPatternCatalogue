@@ -19,6 +19,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		compose.yaml = compose.yaml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneShotModelQueryng", "src\OneShotModelQueryng\OneShotModelQueryng.csproj", "{194C61BA-7C23-4033-B298-57C148E64A03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IncrementalModelQuerying", "src\IncrementalModelQuerying\IncrementalModelQuerying.csproj", "{77C5D703-EB51-4F95-A6E4-82FC437EE5E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +35,8 @@ Global
 		{3ABBD3F2-5536-4EC9-9691-7F2D342584DC} = {83936524-28C6-42EF-B361-475864DE36BF}
 		{3511909F-5143-41EF-95F7-1340D8CB4614} = {E06C9CC0-BD70-41C6-AE9C-40DA6F1CC07D}
 		{5CE12D73-3FA1-47F3-90BA-A0EE9BDCC65D} = {E06C9CC0-BD70-41C6-AE9C-40DA6F1CC07D}
+		{194C61BA-7C23-4033-B298-57C148E64A03} = {E06C9CC0-BD70-41C6-AE9C-40DA6F1CC07D}
+		{77C5D703-EB51-4F95-A6E4-82FC437EE5E0} = {E06C9CC0-BD70-41C6-AE9C-40DA6F1CC07D}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{262C16C3-CCD2-40AC-9582-B9A3AD5631EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -49,5 +55,13 @@ Global
 		{5CE12D73-3FA1-47F3-90BA-A0EE9BDCC65D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CE12D73-3FA1-47F3-90BA-A0EE9BDCC65D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CE12D73-3FA1-47F3-90BA-A0EE9BDCC65D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{194C61BA-7C23-4033-B298-57C148E64A03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{194C61BA-7C23-4033-B298-57C148E64A03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{194C61BA-7C23-4033-B298-57C148E64A03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{194C61BA-7C23-4033-B298-57C148E64A03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77C5D703-EB51-4F95-A6E4-82FC437EE5E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77C5D703-EB51-4F95-A6E4-82FC437EE5E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77C5D703-EB51-4F95-A6E4-82FC437EE5E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77C5D703-EB51-4F95-A6E4-82FC437EE5E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

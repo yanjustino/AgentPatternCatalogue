@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using Agents.Common;
+using Agents.Common.Models;
 using Rag;
 using Rag.Core;
 
@@ -19,9 +20,10 @@ var retriever = new Retriever("localhost", "docs", embedding);
 await retriever.Seed(samplPath);
 
 // CREATE AGENT
-var llm = LLmClient.Create("http://localhost:11434", "phi4-mini", false);
+var llm = Ollama.Create("http://localhost:11434", "phi4-mini", false);
+var planner = new PlanGeneration(llm);
 var context = AgentContext.Default();
-var creator = new Creator(context, retriever, llm);
+var creator = new Creator(context, retriever, planner);
 
 // AGENT
 var agentAi = new Agent(creator, llm, new Optimiser());

@@ -1,6 +1,5 @@
 using Agents.Common;
 using Agents.Common.Interfaces;
-using Agents.Common.Models;
 using Agents.Common.Storage;
 
 namespace ProactiveGoalCreator;

@@ -1,7 +1,7 @@
 using System.Text.Json;
 using Agents.Common;
 using Agents.Common.Interfaces;
-using Agents.Common.Models;
+using Agents.Common.Results;
 
 namespace PassiveGoalCreator;
 

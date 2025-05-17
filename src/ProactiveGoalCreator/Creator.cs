@@ -1,6 +1,6 @@
 using Agents.Common;
 using Agents.Common.Interfaces;
-using Agents.Common.Models;
+using Agents.Common.Results;
 using Agents.Common.Storage;
 
 namespace ProactiveGoalCreator;
@@ -21,7 +21,7 @@ public class Creator(AgentContext context, IEnumerable<IContextDetector> detecto
     /// <returns>A synthesized <see cref="Goal"/> object if the inputs are valid; otherwise, null.</returns>
     public Goal? GenerateGoal()
     {
-        var prompt = Context.AgentGui.GetUserPrompt();
+        var prompt = Context.UserInterface.GetUserPrompt();
         if (prompt is null) return null;
         
         var memoryContext = Context.MemoryStore.RetrieveContext();
@@ -34,7 +34,7 @@ public class Creator(AgentContext context, IEnumerable<IContextDetector> detecto
         }
 
         if (multimodalContext.Data.Count != 0)
-            Context.AgentGui.Notify("Multimodal context has been captured to improve goal understanding.");
+            Context.UserInterface.Notify("Multimodal context has been captured to improve goal understanding.");
         
         var merged = ContextData.MergeAll(prompt.Context!, memoryContext, multimodalContext);
         return prompt with { Context = merged };

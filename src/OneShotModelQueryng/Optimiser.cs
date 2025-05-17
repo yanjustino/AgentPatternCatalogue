@@ -1,15 +1,14 @@
-using Agents.Common;
 using Agents.Common.Interfaces;
 using Agents.Common.Results;
 
-namespace ProactiveGoalCreator;
+namespace OneShotModelQueryng;
 
 /// <summary>
 /// Represents a prompt optimization class that generates a structured prompt
 /// based on a provided goal using specific formatting and instructions.
 /// Implements the IPromptOptimiser interface.
 /// </summary>
-public class Optimiser : IPromptOptimiser
+public class Optimiser(int maxSteps) : IPromptOptimiser
 {
     /// <summary>
     /// Generates a structured and optimized prompt based on the provided agent goal.
@@ -21,21 +20,22 @@ public class Optimiser : IPromptOptimiser
     /// <returns>A formatted string representing the optimized prompt.</returns>
     public string OptimisePrompt(Goal goal) =>
         $"""
-         <input>
-            {goal.Intent}
-         </input>
          <context>
-            {goal.Context}
-         </context>
-         <instructions>
-             - Select the 'label' from the <context>.
-             - The 'label' should be the most relevant to the <input>.
-             - The 'label' should be the same as the 'label' in the <context>.
-             - Do not include any other text just the 'label'.
-             - Pay attention to <output> format.
-         </instructions>
+           You are a planning assistant. Break the following request into a task and subtasks.
+         </context>  
+         <request>
+           "{goal.Context}"
+         </request>
+         <instruction>
+           - The subtasks should contains no more than {maxSteps} steps;
+           - The length of each step should be less than 30 words;
+           - Each step should have a sequence number starting from 1;
+           - Each step should be formatted as "- [sequence] [description]";
+         </instruction>
          <output>
-             - [label]
+           Task: [main task]
+           Subtasks:
+             - [sequence] [description]
          </output>
          """;
 

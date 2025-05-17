@@ -5,7 +5,7 @@ namespace Agents.Common;
 
 public record AgentContext
 {
-    public IAgentGui AgentGui { get; } = new AgentGui();
+    public IUserInterface UserInterface { get; } = new UserInterface();
     public IMemoryStore MemoryStore { get; init; } = MemoryFactory.CreateDefaultMemory();
     
     public static AgentContext Default() => new ();

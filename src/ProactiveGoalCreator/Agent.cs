@@ -3,7 +3,7 @@ using Agents.Common.Interfaces;
 
 namespace ProactiveGoalCreator;
 
-public class Agent(Creator creator, ILLmClient llm, IPromptOptimiser optimiser)
+public class Agent(Creator creator, IFoundationModel llm, IPromptOptimiser optimiser)
 {
     /// <summary>
     /// Executes the agent's main processing loop, handling user prompts and generating goals asynchronously.
@@ -30,11 +30,11 @@ public class Agent(Creator creator, ILLmClient llm, IPromptOptimiser optimiser)
     {
         if (string.IsNullOrWhiteSpace(prompt))
         {
-            creator.Context.AgentGui.Notify("[ProactiveGoalCreator] No prompt provided.");
+            creator.Context.UserInterface.Notify("[ProactiveGoalCreator] No prompt provided.");
             return;
         }
 
-        var gui = creator.Context.AgentGui;
+        var gui = creator.Context.UserInterface;
         
         gui.Notify("[ProactiveGoalCreator] Querying local LLaMA...");
 

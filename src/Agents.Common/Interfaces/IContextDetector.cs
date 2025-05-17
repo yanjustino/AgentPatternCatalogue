@@ -1,4 +1,3 @@
-using Agents.Common.Models;
 using Agents.Common.Storage;
 
 namespace Agents.Common.Interfaces;

@@ -1,6 +1,6 @@
 using Agents.Common.Storage;
 
-namespace Agents.Common.Models;
+namespace Agents.Common.Results;
 
 /// <summary>
 /// Represents a goal with an associated intent and an optional context.

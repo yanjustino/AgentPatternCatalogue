@@ -1,5 +1,5 @@
 using Agents.Common.Interfaces;
-using Agents.Common.Models;
+using Agents.Common.Results;
 
 namespace Rag;
 

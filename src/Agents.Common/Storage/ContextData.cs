@@ -51,9 +51,19 @@ public class ContextData
     /// <returns>A string containing key-value pairs of the context data, formatted as "Key:Value;" on separate lines.</returns>
     public override string ToString()
     {
+        if (Data.Count == 0) return string.Empty;
+        
+        if (Data.Count == 1)
+            return $"{Data.First().Key}: {Data.First().Value}";
+        
         var sb = new StringBuilder();
         foreach (var kv in Data)
-            sb.AppendLine($"{kv.Key}:{kv.Value};");
+        {
+            if (string.IsNullOrWhiteSpace(kv.Key)) continue;
+            if (string.IsNullOrWhiteSpace(kv.Value)) continue;
+            sb.AppendLine($"{kv.Key}: {kv.Value}");
+        }
+
         return sb.ToString();
     }
 }

@@ -1,12 +1,12 @@
 using Agents.Common.Interfaces;
-using Agents.Common.Models;
+using Agents.Common.Results;
 
 namespace Agents.Common;
 
 /// <summary>
 /// Represents a simple console-based dialogue interface.
 /// </summary>
-public class AgentGui : IAgentGui
+public class UserInterface : IUserInterface
 {
     /// <summary>
     /// Prompts the user for input and generates a corresponding goal based on the input.
@@ -15,9 +15,9 @@ public class AgentGui : IAgentGui
     /// A tuple containing a boolean indicating whether the user wishes to exit,
     /// and a Goal object encapsulating the user's input and an optional context.
     /// </returns>
-    public Goal? GetUserPrompt()
+    public Goal? GetUserPrompt(string? text = null)
     {
-        Console.Write("\n> Enter your prompt (or type 'exit'): ");
+        Console.Write($"\n> {text ?? "Enter your prompt (or type 'exit')"}: ");
         var input = Console.ReadLine();
         return IsInvalidValidInput(input) ? null : new Goal(input, null);
     }
@@ -38,5 +38,13 @@ public class AgentGui : IAgentGui
     /// </summary>
     /// <param name="message">The message to be displayed to the user.</param>
     public void Notify(string message)
-        => Console.WriteLine($"[Agent] {message}");
+    {
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine("<|BEGIN|>");
+        Console.ResetColor();
+        Console.WriteLine(message);
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine("<|END|>");
+        Console.ResetColor();
+    }
 }
