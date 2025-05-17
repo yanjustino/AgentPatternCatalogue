@@ -3,6 +3,24 @@
 **Resumo**  
 O padrão **Incremental Model Querying** descreve um processo em que o agente interage com o modelo fundacional de forma iterativa, realizando múltiplas consultas durante a geração de um plano. A cada passo, o modelo é consultado novamente, permitindo refinamento incremental, injeção de contexto adicional e maior explicabilidade.
 
+```mermaid
+flowchart LR
+    U[User] <-->|prompt/result/Feedback| Dlg{{ Dialogue <br>Interface }}
+    PG[Plan <br>generation]
+
+    subgraph AGENT [Agent]
+        subgraph CREATOR [Creator]
+            PG --> |Request| LLMa[Foundation <br>Model]
+            LLMa --> |Plan| PG
+            PG --> LLMa
+            LLMa --> PG
+        end
+
+        Dlg <--> RAG[RAG Agent]
+        RAG -->|requirements| PG
+    end
+```
+
 ## Contexto
 Quando um usuário fornece um objetivo ao agente, o modelo pode ter dificuldades para gerar um plano adequado com uma única chamada. O raciocínio pode exigir vários passos intermediários, que não cabem ou não são capturados por um único prompt.
 

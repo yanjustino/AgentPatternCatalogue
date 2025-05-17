@@ -3,6 +3,24 @@
 **Summary**  
 The **Incremental Model Querying** pattern describes an iterative process where the agent interacts with the foundation model multiple times throughout plan generation. At each step, new prompts and partial context are used to refine the reasoning and build a more complete, explainable plan.
 
+```mermaid
+flowchart LR
+    U[User] <-->|prompt/result/Feedback| Dlg{{ Dialogue <br>Interface }}
+    PG[Plan <br>generation]
+
+    subgraph AGENT [Agent]
+        subgraph CREATOR [Creator]
+            PG --> |Request| LLMa[Foundation <br>Model]
+            LLMa --> |Plan| PG
+            PG --> LLMa
+            LLMa --> PG
+        end
+
+        Dlg <--> RAG[RAG Agent]
+        RAG -->|requirements| PG
+    end
+```
+
 ## Context
 When users provide a goal to the agent, the foundation model may struggle to return a correct or complete plan in a single query. The reasoning process may require multiple intermediate steps, context updates, or refinements.
 
