@@ -16,6 +16,8 @@ This repository brings to life selected architectural patterns from the paper
 - 📄 [Proactive Goal Creator](doc/ProactiveGoalCreator.md) anticipates users’ goals by analysing human interactions and proactively capturing multimodal context through appropriate detectors, thereby enriching goal descriptions and improving accessibility.
 - 📄 [Prompt Response Optimiser](doc/PromptResponseOptimiser.md) is a pattern designed to enhance the interaction between agents and large language models (LLMs). It refines goals and contextual information into optimized prompts, ensuring that the LLM produces accurate, relevant, and goal-aligned responses.
 - 📄 [Retrieval Augmented Generation (RAG)](doc/RetrievalAugmentedGeneration.md) is a pattern that combines retrieval and generation techniques to enhance the performance of large language models (LLMs). It retrieves relevant information from a knowledge base and uses it to generate more accurate and contextually relevant responses.
+- 📄 [One-Shot Model Querying](doc/OneShotModelQueryng.md) is a pattern that describes a direct interaction in which the agent queries a foundation model (LLM) only once to generate a complete plan based on a user’s input. This approach favors simplicity and efficiency, making it suitable for straightforward tasks that can be handled in a single reasoning step.
+- 📄 [Incremental Model Querying](doc/IncrementalModelQuerying.md) is a pattern that describes an iterative process where the agent interacts with the foundation model multiple times throughout plan generation. At each step, new prompts and partial context are used to refine the reasoning and build a more complete, explainable plan.
 ---
 
 ## ⚙️ Dependencies
