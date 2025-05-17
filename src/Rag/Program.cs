@@ -23,7 +23,7 @@ await retriever.Seed(samplPath);
 var llm = Ollama.Create("http://localhost:11434", "phi4-mini", false);
 var planner = new PlanGeneration(llm);
 var context = AgentContext.Default();
-var creator = new Creator(context, retriever, planner);
+var creator = new GoalCreator(context, retriever, planner);
 
 // AGENT
 var agentAi = new Agent(creator, llm, new Optimiser());

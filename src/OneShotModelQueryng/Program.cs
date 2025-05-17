@@ -12,7 +12,7 @@ var key = Environment.GetEnvironmentVariable("API_KEY") ?? "not-found";
 var llm = Gemini.Create(key);
 var planner = new PlanGeneration(llm);
 var context = AgentContext.Default();
-var creator = new Creator(context, planner);
+var creator = new GoalCreator(context, planner);
 
 // AGENT
 var agentAi = new Agent(creator);

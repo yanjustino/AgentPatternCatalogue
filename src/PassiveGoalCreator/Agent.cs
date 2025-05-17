@@ -16,7 +16,7 @@ namespace PassiveGoalCreator;
 /// - Executing tasks associated with the generated prompts.
 /// - Shutting down gracefully upon user request.
 /// </remarks>
-public class Agent(Creator creator, IFoundationModel llm, IPromptOptimiser optimiser)
+public class Agent(GoalCreator goalCreator, IFoundationModel llm, IPromptOptimiser optimiser)
 {
     /// <summary>
     /// Runs the main execution loop for the agent asynchronously.
@@ -30,7 +30,7 @@ public class Agent(Creator creator, IFoundationModel llm, IPromptOptimiser optim
     {
         while (true)
         {
-            var goal = creator.GenerateGoal();
+            var goal = goalCreator.GenerateGoal();
             if (goal is null) break;
             
             var promptString = optimiser.OptimisePrompt(goal);
@@ -47,11 +47,11 @@ public class Agent(Creator creator, IFoundationModel llm, IPromptOptimiser optim
     {
         if (string.IsNullOrWhiteSpace(prompt))
         {
-            creator.Context.UserInterface.Notify("[ProactiveGoalCreator] No prompt provided.");
+            goalCreator.Context.UserInterface.Notify("[ProactiveGoalCreator] No prompt provided.");
             return;
         }
         
-        var gui = creator.Context.UserInterface;
+        var gui = goalCreator.Context.UserInterface;
 
         gui.Notify("[PassiveGoalCreator] Querying local LLaMA...");
 

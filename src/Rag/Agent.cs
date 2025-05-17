@@ -5,7 +5,7 @@ namespace Rag;
 /// <summary>
 /// Represents an agent that processes user prompts and generates goals asynchronously.
 /// </summary>
-public class Agent(Creator creator, IFoundationModel llm, IPromptOptimiser optimiser)
+public class Agent(GoalCreator goalCreator, IFoundationModel llm, IPromptOptimiser optimiser)
 {
     /// <summary>
     /// Executes the agent's main processing loop, handling user prompts and generating goals asynchronously.
@@ -15,7 +15,7 @@ public class Agent(Creator creator, IFoundationModel llm, IPromptOptimiser optim
     {
         while (true)
         {
-            var goal = await creator.GenerateGoalAsync();
+            var goal = await goalCreator.GenerateGoalAsync();
             if (goal is null) break;
 
             var promptString = optimiser.OptimisePrompt(goal);
@@ -32,11 +32,11 @@ public class Agent(Creator creator, IFoundationModel llm, IPromptOptimiser optim
     {
         if (string.IsNullOrWhiteSpace(prompt))
         {
-            creator.Context.UserInterface.Notify("[Rag] No prompt provided.");
+            goalCreator.Context.UserInterface.Notify("[Rag] No prompt provided.");
             return;
         }
 
-        var gui = creator.Context.UserInterface;
+        var gui = goalCreator.Context.UserInterface;
         
         gui.Notify("[Rag] Querying local LLaMA...");
 

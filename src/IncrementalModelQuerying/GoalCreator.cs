@@ -9,7 +9,7 @@ namespace IncrementalModelQuerying;
 /// The GoalCreator class is responsible for creating and modifying a Goal object
 /// by merging its contextual data with additional data from an IMemoryStore implementation.
 /// </summary>
-public class Creator(AgentContext context, IPlanGeneration planner): IGoalCreatorAsync
+public class GoalCreator(AgentContext context, IPlanGeneration planner): IGoalCreatorAsync
 {
     public AgentContext Context { get; } = context;
     private IUserInterface Gui => Context.UserInterface;

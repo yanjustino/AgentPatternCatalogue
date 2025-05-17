@@ -9,7 +9,7 @@ namespace ProactiveGoalCreator;
 /// The GoalCreator class is responsible for synthesizing and enhancing goals based on user inputs, memory contexts,
 /// and multimodal contextual information captured from various context detectors.
 /// </summary>
-public class Creator(AgentContext context, IEnumerable<IContextDetector> detectors): IGoalCreator
+public class GoalCreator(AgentContext context, IEnumerable<IContextDetector> detectors): IGoalCreator
 {
     public AgentContext Context { get; } = context;
 

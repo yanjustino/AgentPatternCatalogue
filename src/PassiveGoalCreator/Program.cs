@@ -5,7 +5,7 @@ using PassiveGoalCreator;
 Console.WriteLine("=== Passive Goal Creator Agent (LLaMA + CLI) ===");
 
 var context = AgentContext.Default();
-var creator = new Creator(context);
+var creator = new GoalCreator(context);
 var prompts = new Optimiser();
 var clients = Ollama.Create("http://localhost:11434", "phi4-mini");
 

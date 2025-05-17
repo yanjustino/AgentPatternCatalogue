@@ -10,7 +10,7 @@ namespace Rag;
 /// The GoalCreator class is responsible for creating and modifying a Goal object
 /// by merging its contextual data with additional data from an IMemoryStore implementation.
 /// </summary>
-public class Creator(AgentContext context, IRetriever retriever, IPlanGeneration planner): IGoalCreatorAsync
+public class GoalCreator(AgentContext context, IRetriever retriever, IPlanGeneration planner): IGoalCreatorAsync
 {
     public AgentContext Context { get; } = context;
 
