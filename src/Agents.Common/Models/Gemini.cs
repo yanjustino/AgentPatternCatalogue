@@ -19,11 +19,13 @@ public partial class Gemini : IFoundationModel
     {
         var client = new HttpClient();
         client.BaseAddress = new Uri("https://generativelanguage.googleapis.com");
+        client.DefaultRequestHeaders.Add("X-goog-api-key", _apiKey);
+        
         
         var payload = new { contents = new { parts = new { text = prompt } } };
         var json = JsonSerializer.Serialize(payload);
 
-        var response = await client.PostAsync($"/v1beta/models/gemini-2.0-flash:generateContent?key={_apiKey}", 
+        var response = await client.PostAsync($"/v1beta/models/gemini-2.0-flash:generateContent", 
             new StringContent(json, System.Text.Encoding.UTF8, "application/json"));
         
         response.EnsureSuccessStatusCode();
