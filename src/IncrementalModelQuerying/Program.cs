@@ -8,8 +8,7 @@ Console.WriteLine("=== Incremental Model Queryng Agent (LLaMA) ===");
 
 // CREATE AGENT
 //var llm = Ollama.Create("http://localhost:11434", "phi4-mini", false);
-var key = Environment.GetEnvironmentVariable("API_KEY") ?? "not-found";
-var llm = Gemini.Create(key);
+var llm = Gemini.Create();
 var planner = new PlanGeneration(llm);
 var context = AgentContext.Default();
 var creator = new GoalCreator(context, planner);

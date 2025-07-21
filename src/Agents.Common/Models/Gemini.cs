@@ -21,7 +21,6 @@ public partial class Gemini : IFoundationModel
         client.BaseAddress = new Uri("https://generativelanguage.googleapis.com");
         client.DefaultRequestHeaders.Add("X-goog-api-key", _apiKey);
         
-        
         var payload = new { contents = new { parts = new { text = prompt } } };
         var json = JsonSerializer.Serialize(payload);
 
@@ -31,8 +30,6 @@ public partial class Gemini : IFoundationModel
         response.EnsureSuccessStatusCode();
         var body = await response.Content.ReadAsStringAsync();
         
-        Console.WriteLine(body);
-
         var responseBody = JsonDocument.Parse(body).RootElement
             .GetProperty("candidates")[0]
             .GetProperty("content")
@@ -46,8 +43,9 @@ public partial class Gemini : IFoundationModel
 
 public partial class Gemini
 {
-    public static Gemini Create(string apiKey)
+    public static Gemini Create()
     {
-        return new Gemini(apiKey);
+        var key = Environment.GetEnvironmentVariable("API_KEY") ?? "not-found";
+        return new Gemini(key);
     }
 }

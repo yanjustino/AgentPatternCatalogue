@@ -2,45 +2,28 @@ using System.Text.Json;
 using Agents.Common.Interfaces;
 using Agents.Common.Storage;
 
-namespace VotingBasedCooperation;
+namespace VotingBasedCooperation.Agents;
 
-public class Coordinator(IFoundationModel llm, IVoter human, params IVoter[] voters)
+public class Coordinator(IFoundationModel llm, Agent user, Agent[] voters): Agent("Coordinator", llm)
 {
-    public async Task<string> ValidateVotesAsync(string storeId, ContextData stories)
+    public async Task<string> ExecuteAsync(string storeId, ContextData stories)
     {
-        // Initialize the agent context
-        var humanResult = await human.VoteAsync(storeId, stories);
-        
-        var tasks = voters.Select(voter => voter.VoteAsync(storeId, stories)).ToList();
+        var vote = await VoteAsync(storeId, stories);
+        var votes = new List<string> { vote };
 
+        var tasks = voters.Select(voter => voter.VoteAsync(storeId, stories)).ToList();
         var results = await Task.WhenAll(tasks);
         
-        var votes = new List<string> { humanResult };
+        votes.AddRange(results.Where(result => !string.IsNullOrEmpty(result)));
 
-        foreach (var result in results)
-        {
-            if (!string.IsNullOrEmpty(result))
-            {
-                votes.Add(result);
-            }
-        }
-        
-        var prompt = SystemPrompt.Replace("{{votes}}", JsonSerializer.Serialize(votes));
+        var prompt = SYSTEM_PROMPT.Replace("{{votes}}", JsonSerializer.Serialize(votes));
         return await ExecutePrompt(prompt) ?? "Agent did not return a valid response.";
-        
     }
-    
-    private async Task<string?> ExecutePrompt(string? prompt)
-    {
-        if (string.IsNullOrWhiteSpace(prompt))
-        {
-            throw new ArgumentException("Prompt cannot be null or whitespace.", nameof(prompt));
-        }
 
-        return await llm.SendMessage(prompt);
-    }    
+    public override async Task<string> VoteAsync(string storeId, ContextData stories) 
+        => await user.VoteAsync(storeId, stories);
 
-    private string SystemPrompt =>
+    private const string SYSTEM_PROMPT =
         """
         You are a coordinator agent responsible for aggregating and analyzing complexity estimation votes from multiple voting agents.
         
@@ -80,7 +63,7 @@ public class Coordinator(IFoundationModel llm, IVoter human, params IVoter[] vot
         - Do not perform story point averaging or consensus computation.
         - Do not modify agent responses.
         - Do not add your own interpretation.
-        - Output only the table after validation
+        - Output after validation
         </restrictions>
         """;
 }

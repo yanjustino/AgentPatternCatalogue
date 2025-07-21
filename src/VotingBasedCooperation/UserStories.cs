@@ -3,9 +3,9 @@ using Agents.Common.Storage;
 
 namespace VotingBasedCooperation;
 
-public class UserStoryFactory
+public class UserStories
 {
-    public static ContextData CreateDefaultUserStory() =>
+    public static ContextData U001 =>
         ContextData.MergeAll(("US001",
             """
             # [US001] Create endpoint for client registration
@@ -55,7 +55,6 @@ public class UserStoryFactory
               When I send a POST request to /api/clients
               Then the server responds with HTTP 401 Unauthorized
             ```
-
             ### Technical Information
             - ASP.NET Core 8.0
             - Controller: ClientsController

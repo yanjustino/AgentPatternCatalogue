@@ -18,6 +18,7 @@ This repository brings to life selected architectural patterns from the paper
 - 📄 [Retrieval Augmented Generation (RAG)](doc/RetrievalAugmentedGeneration.md) is a pattern that combines retrieval and generation techniques to enhance the performance of large language models (LLMs). It retrieves relevant information from a knowledge base and uses it to generate more accurate and contextually relevant responses.
 - 📄 [One-Shot Model Querying](doc/OneShotModelQueryng.md) is a pattern that describes a direct interaction in which the agent queries a foundation model (LLM) only once to generate a complete plan based on a user’s input. This approach favors simplicity and efficiency, making it suitable for straightforward tasks that can be handled in a single reasoning step.
 - 📄 [Incremental Model Querying](doc/IncrementalModelQuerying.md) is a pattern that describes an iterative process where the agent interacts with the foundation model multiple times throughout plan generation. At each step, new prompts and partial context are used to refine the reasoning and build a more complete, explainable plan.
+- 📄 [Voting Based Cooperation](doc/VotingBasedCooperation.md) is a pattern that enables multiple agents to independently estimate the complexity of user stories by voting. A coordinator agent collects, validates, and aggregates these votes, presenting the results in a clear and structured format without performing consensus or statistical analysis.
 ---
 
 ## ⚙️ Dependencies
