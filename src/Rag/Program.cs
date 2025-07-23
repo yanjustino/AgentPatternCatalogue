@@ -8,16 +8,26 @@ using Rag.Core;
 Console.WriteLine("=== Retrieval Augmented Generator Agent (LLaMA + ONNX) ===");
 
 // EMBEDDING
+// The ONNX model for the E5-small-v2 embedding model
+// This model is used to convert text into embeddings for the Retriever
 // https://huggingface.co/intfloat/e5-small-v2/blob/main/model.onnx
-var modelPath = Path.Combine(Environment.CurrentDirectory, "resource", "model.onnx");
+var model = Path.Combine(Environment.CurrentDirectory, "resource", "model.onnx");
+
+// The tokenizer vocabulary file for the E5-small-v2 model
+// This file contains the vocabulary used by the tokenizer to convert text into tokens
 // https://huggingface.co/intfloat/e5-small-v2/blob/main/vocab.txt
-var vocabPath = Path.Combine(Environment.CurrentDirectory, "resource", "vocab.txt");
-var samplPath = Path.Combine(Environment.CurrentDirectory, "resource", "sample.txt");
-var embedding = new Embedding(modelPath, new Tokenizer(vocabPath));
+var vocab = Path.Combine(Environment.CurrentDirectory, "resource", "vocab.txt");
+
+// The sample text file to be used for seeding the Retriever
+var sample = Path.Combine(Environment.CurrentDirectory, "resource", "sample.txt");
+
+// CREATE EMBEDDING
+// The Embedding class is used to create embeddings from text using the ONNX model and tokenizer
+var embedding = new Embedding(model, new Tokenizer(vocab));
 
 // CREATE RETRIEVE
 var retriever = new Retriever("localhost", "docs", embedding);
-await retriever.Seed(samplPath);
+await retriever.Seed(sample);
 
 // CREATE AGENT
 var llm = Ollama.Create("http://localhost:11434", "phi4-mini", false);
