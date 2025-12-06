@@ -1,12 +1,12 @@
 # VotingBasedCooperation Pattern
 
-## Overview
+## Visão Geral
 
-The VotingBasedCooperation pattern enables multiple agents to independently estimate the complexity of user stories by voting. A coordinator agent collects, validates, and aggregates these votes, presenting the results in a clear and structured format without performing consensus or statistical analysis.
+O padrão VotingBasedCooperation permite que vários agentes estimem de forma independente a complexidade de user stories por meio de votos. Um agente coordenador coleta, valida e agrega esses votos, apresentando os resultados de forma clara e estruturada, sem realizar consenso ou análise estatística.
 
-## Components
+## Componentes
 
-## Class Diagram
+## Diagrama de Classes
 
 ```mermaid
 classDiagram
@@ -24,38 +24,38 @@ classDiagram
     Coordinator --> FoundationModel : uses
 ```
 
-- **Coordinator**: Aggregates and validates votes, formats the output.
-- **Voters**: Agents (human or automated) that provide votes with justifications.
-- **Foundation Model (LLM)**: Assists the coordinator in processing and formatting the aggregated votes.
+- **Coordinator**: Agrega e valida votos, formata a saída.
+- **Voters**: Agentes (humanos ou automatizados) que fornecem votos com justificativas.
+- **Foundation Model (LLM)**: Auxilia o coordenador no processamento e formatação dos votos agregados.
 
-## Workflow
+## Fluxo de Trabalho
 
 ![img.png](VotingBasedCooperation.png)
 
-1. Each voter submits a vote for a user story, including:
-    - agent\_id
-    - user\_story\_id
-    - story\_point (must be one of: 1, 2, 3, 5, 8, 13)
+1. Cada votante envia um voto para uma user story, incluindo:
+    - agent_id
+    - user_story_id
+    - story_point (deve ser um dos: 1, 2, 3, 5, 8, 13)
     - justification
-2. The coordinator collects all votes, validates them, and generates a Markdown summary.
-3. No consensus or averaging is performed; only individual votes are reported.
+2. O coordenador coleta todos os votos, valida-os e gera um resumo em Markdown.
+3. Não é realizado consenso ou média; apenas votos individuais são reportados.
 
-## Output
+## Saída
 
-The coordinator outputs a Markdown table or list with the following columns:
+O coordenador produz uma tabela ou lista em Markdown com as seguintes colunas:
 - Agent ID
 - User Story ID
 - Story Point
 - Justification
 
-## Restrictions
+## Restrições
 
-- No statistical analysis or consensus computation.
-- No modification or interpretation of agent responses.
-- Only validated votes are reported.
+- Sem análise estatística ou cálculo de consenso.
+- Sem modificação ou interpretação das respostas dos agentes.
+- Apenas votos validados são reportados.
 
-## Integration
+## Integração
 
-- Implement a voter interface for each agent.
-- Provide a compatible foundation model for LLM operations.
-- Use the coordinator to aggregate and report votes.
+- Implementar uma interface de votante para cada agente.
+- Fornecer um modelo de fundação compatível para operações de LLM.
+- Usar o coordenador para agregar e reportar votos.

@@ -22,7 +22,7 @@ public class ContentGuardrails: IGuardrails
 
     private static async Task<string?> CallGuardrails(string input)
     {
-        var client = Ollama.Create(model:"llama-guard3:1b");
+        var client = NewOllama.Create(model:"llama-guard3:1b");
         return await client.SendMessage(input);
     }
     

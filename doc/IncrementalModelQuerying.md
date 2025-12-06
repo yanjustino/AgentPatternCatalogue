@@ -1,64 +1,61 @@
 # Incremental Model Querying
 
-**Summary**  
-The **Incremental Model Querying** pattern describes an iterative process where the agent interacts with the foundation model multiple times throughout plan generation. At each step, new prompts and partial context are used to refine the reasoning and build a more complete, explainable plan.
+**Resumo**  
+O padrão **Incremental Model Querying** descreve um processo iterativo no qual o agente interage com o modelo de base várias vezes durante a geração do plano. A cada etapa, novos prompts e contextos parciais são usados para refinar o raciocínio e construir um plano mais completo e explicável.
 
 ```mermaid
 flowchart LR
-    U[User] <-->|prompt/result/Feedback| Dlg{{ Dialogue <br>Interface }}
-    PG[Plan <br>generation]
-
-    subgraph AGENT [Agent]
-        subgraph CREATOR [Creator]
-            PG --> |Request| LLMa[Foundation <br>Model]
-            LLMa --> |Plan| PG
-            PG --> LLMa
-            LLMa --> PG
-        end
-
-        Dlg <--> RAG[RAG Agent]
-        RAG -->|requirements| PG
+    U[User] -->|prompt| Dlg[User <br> Interface]
+    Dlg[User <br> Interface] -->|Feedback| U
+    
+    subgraph Agent
+        PG[Plan Generator]
     end
+    Dlg <--> PG
+    
+    PG --> |Request| LLMa[LLM <br>Foundation Model]
+    LLMa --> |Plan| PG
+    
 ```
 
-## Context
-When users provide a goal to the agent, the foundation model may struggle to return a correct or complete plan in a single query. The reasoning process may require multiple intermediate steps, context updates, or refinements.
+## Contexto
+Quando os usuários fornecem um objetivo ao agente, o modelo de base pode ter dificuldade para retornar um plano correto ou completo em uma única consulta. O processo de raciocínio pode exigir múltiplas etapas intermediárias, atualizações de contexto ou refinamentos.
 
-## Problem
-How can the agent perform accurate and explainable reasoning when a one-shot query is insufficient for generating a coherent plan?
+## Problema
+Como o agente pode realizar um raciocínio preciso e explicável quando uma consulta one-shot é insuficiente para gerar um plano coerente?
 
-## Forces
-- **Limited context window** – Token constraints make it difficult to include all required information in one prompt.
-- **Oversimplification** – Single-shot queries may miss nuance and interdependencies.
-- **Explainability** – Transparent, step-by-step plans build user trust and facilitate debugging.
+## Forças
+- **Janela de contexto limitada** – Restrições de tokens dificultam incluir todas as informações necessárias em um único prompt.
+- **Super-simplificação** – Consultas one-shot podem perder nuances e interdependências.
+- **Explicabilidade** – Planos transparentes e passo a passo aumentam a confiança do usuário e facilitam a depuração.
 
-## Solution
-The agent uses a multi-step process, querying the foundation model at each stage of plan generation. Intermediate results can be validated, adjusted, or expanded using user feedback, memory, or tool outputs. The number of queries may be predefined or dynamic, and the process may follow reusable templates or workflow repositories.
+## Solução
+O agente utiliza um processo em múltiplas etapas, consultando o modelo de base em cada estágio da geração do plano. Resultados intermediários podem ser validados, ajustados ou expandidos usando feedback do usuário, memória ou saídas de ferramentas. O número de consultas pode ser pré-definido ou dinâmico, e o processo pode seguir templates reutilizáveis ou repositórios de fluxo de trabalho.
 
-## Consequences
+## Consequências
 
-### Benefits
-- **Supplementary context** – Tasks can be split across multiple prompts, solving the context window problem.
-- **Improved reasoning certainty** – Iterative refinement increases the accuracy of results.
-- **Explainability** – Each step can include justifications, making the plan easier to understand.
+### Benefícios
+- **Contexto suplementar** – As tarefas podem ser divididas entre vários prompts, resolvendo o problema da janela de contexto.
+- **Maior certeza no raciocínio** – O refinamento iterativo aumenta a precisão dos resultados.
+- **Explicabilidade** – Cada etapa pode incluir justificativas, tornando o plano mais fácil de entender.
 
-### Drawbacks
-- **Overhead** – Multiple queries increase latency and computational cost.
-- **Cost** – High interaction volume can become expensive when using commercial models.
+### Desvantagens
+- **Sobrecarga** – Múltiplas consultas aumentam latência e custo computacional.
+- **Custo** – Alto volume de interações pode se tornar caro ao usar modelos comerciais.
 
-## Known Uses
-- **HuggingGPT** – Decomposes user requests into sub-tasks via multiple model queries.
-- **EcoAssistant** – Iteratively refines code using LLM-driven feedback loops.
-- **ReWOO** – Plans and executes interdependent tasks using tool-assisted observations.
+## Usos Conhecidos
+- **HuggingGPT** – Decompõe pedidos do usuário em sub-tarefas via múltiplas consultas a modelos.
+- **EcoAssistant** – Refina iterativamente código usando loops de feedback dirigidos por LLM.
+- **ReWOO** – Planeja e executa tarefas interdependentes usando observações assistidas por ferramentas.
 
-## Related Patterns
-- **One-Shot Model Querying** – Direct alternative for simple tasks with one-time querying.
-- **Multi-Path Plan Generator** – Iteratively generates branched plans with user input.
-- **Self-Reflection** – Queries the model multiple times to review and refine outputs.
-- **Human-Reflection** – Enables collaborative iteration between user and agent.
-- **Multimodal Guardrails** – Acts as an intermediary for safe and structured model interactions.
+## Padrões Relacionados
+- **One-Shot Model Querying** – Alternativa direta para tarefas simples com consulta única.
+- **Multi-Path Plan Generator** – Gera iterativamente planos ramificados com entrada do usuário.
+- **Self-Reflection** – Consulta o modelo várias vezes para revisar e refinar saídas.
+- **Human-Reflection** – Permite iteração colaborativa entre usuário e agente.
+- **Multimodal Guardrails** – Atua como intermediário para interações do modelo mais seguras e estruturadas.
 
-## References
+## Referências
 [37] Shen et al., “HuggingGPT,” 2023.  
 [38] Li et al., “EcoAssistant,” 2023.  
 [39] Xu et al., “ReWOO: Reasoning with Workflow and Observation,” 2023.

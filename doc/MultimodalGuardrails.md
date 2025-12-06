@@ -1,98 +1,98 @@
 # MultimodalGuardrails Pattern
 
-## Short Summary
+## Resumo Curto
 
-**Multimodal Guardrails** control the inputs and outputs of foundation models to meet specific requirements, such as user needs, ethical standards, and legal regulations.
+**Multimodal Guardrails** controlam as entradas e saídas de modelos de fundação para atender a requisitos específicos, como necessidades dos usuários, padrões éticos e regulamentações legais.
 
-## Overview
+## Visão Geral
 
-The **MultimodalGuardrails** pattern defines a framework for enforcing constraints and safety rules across multiple data modalities (text, images, audio, video). It ensures that multimodal systems operate within defined boundaries, improving reliability, safety, and compliance.
+O padrão **MultimodalGuardrails** define um framework para impor restrições e regras de segurança em múltiplas modalidades de dados (texto, imagens, áudio, vídeo). Ele garante que sistemas multimodais operem dentro de limites definidos, melhorando confiabilidade, segurança e conformidade.
 
 ![img.png](MultimodalGuardrails.png)
 
-## Usage Context
+## Contexto de Uso
 
-This pattern is relevant in systems where an agent consists of a foundation model and other components. When users provide specific goals, the underlying foundation model is consulted to achieve those goals. Multimodal Guardrails act as an intermediary to ensure safe and compliant interactions.
+Este padrão é relevante em sistemas onde um agente consiste em um modelo de fundação e outros componentes. Quando os usuários fornecem objetivos específicos, o modelo de fundação subjacente é consultado para alcançá-los. Multimodal Guardrails atuam como um intermediário para garantir interações seguras e conformes.
 
-## Problem Statement
+## Declaração do Problema
 
-How can we prevent a foundation model from being influenced by adversarial inputs or from generating harmful or undesirable outputs for users and other system components?
+Como podemos evitar que um modelo de fundação seja influenciado por entradas adversariais ou que gere saídas prejudiciais ou indesejáveis para usuários e outros componentes do sistema?
 
-## Forces
+## Forças
 
-- **Robustness**: Adversarial information can be sent to the foundation model, affecting its memory, reasoning, and subsequent results.
-- **Safety**: Foundation models may generate inappropriate responses due to hallucinations, which can offend users or disrupt other components.
-- **Standards Alignment**: Agents and foundation models must comply with industry, organizational, and legal standards.
+- **Robustez**: Informações adversariais podem ser enviadas ao modelo de fundação, afetando sua memória, raciocínio e resultados subsequentes.
+- **Segurança**: Modelos de fundação podem gerar respostas inadequadas devido a alucinações, o que pode ofender usuários ou prejudicar outros componentes.
+- **Alinhamento a Padrões**: Agentes e modelos de fundação devem cumprir padrões da indústria, organizacionais e requisitos legais.
 
-## Proposed Solution
+## Solução Proposta
 
-Apply **guardrails** as an intermediate layer between the foundation model and all other system components:
+Aplicar **guardrails** como uma camada intermediária entre o modelo de fundação e todos os outros componentes do sistema:
 
-- When users or components send prompts/messages to the foundation model, guardrails first check if the information meets predefined requirements. Only valid information is delivered to the model (e.g., PII is handled or removed to protect privacy).
-- Guardrails can evaluate content based on predefined examples or in a reference-independent manner.
-- When the foundation model generates outputs, guardrails ensure responses do not include biased or disrespectful information and meet specific requirements.
-- Multiple guardrails can be implemented, each responsible for specialized interactions (e.g., data retrieval, user input validation, external API invocation).
-- Guardrails are capable of processing multimodal data (text, audio, video) for comprehensive monitoring and control.
+- Quando usuários ou componentes enviam prompts/mensagens ao modelo de fundação, os guardrails verificam primeiro se a informação atende aos requisitos predefinidos. Apenas informações válidas são entregues ao modelo (por exemplo, PII é tratada ou removida para proteger a privacidade).
+- Guardrails podem avaliar conteúdo com base em exemplos predefinidos ou de maneira independente de referência.
+- Quando o modelo de fundação gera saídas, os guardrails garantem que as respostas não incluam informações tendenciosas ou desrespeitosas e atendam aos requisitos específicos.
+- Vários guardrails podem ser implementados, cada um responsável por interações especializadas (por exemplo, recuperação de dados, validação de entrada do usuário, invocação de API externa).
+- Guardrails são capazes de processar dados multimodais (texto, áudio, vídeo) para monitoramento e controle abrangentes.
 
-## Components
+## Componentes
 
-- **GuardrailManager**: Orchestrates the application of guardrails for each modality.
-- **TextGuardrail**: Handles rules and constraints for text data.
-- **ImageGuardrail**: Handles rules and constraints for image data.
-- **AudioGuardrail**: Handles rules and constraints for audio data.
-- **PolicyStore**: Stores and manages guardrail policies and configurations.
-- **ViolationReporter**: Collects and reports violations detected by guardrails.
+- **GuardrailManager**: Orquestra a aplicação de guardrails para cada modalidade.
+- **TextGuardrail**: Lida com regras e restrições para dados de texto.
+- **ImageGuardrail**: Lida com regras e restrições para dados de imagem.
+- **AudioGuardrail**: Lida com regras e restrições para dados de áudio.
+- **PolicyStore**: Armazena e gerencia políticas e configurações de guardrails.
+- **ViolationReporter**: Coleta e reporta violações detectadas pelos guardrails.
 
-## Workflow
+## Fluxo de Trabalho
 
-1. Input data (text, image, audio, video) is received by the system.
-2. The `GuardrailManager` dispatches the data to the appropriate guardrail component(s).
-3. Each guardrail applies its rules and checks for violations.
-4. If a violation is detected, the `ViolationReporter` logs or acts on the event.
-5. Only data that passes all relevant guardrails proceeds to downstream processing.
+1. Dados de entrada (texto, imagem, áudio, vídeo) são recebidos pelo sistema.
+2. O `GuardrailManager` encaminha os dados para os componentes de guardrail apropriados.
+3. Cada guardrail aplica suas regras e verifica por violações.
+4. Se uma violação for detectada, o `ViolationReporter` registra ou atua sobre o evento.
+5. Apenas dados que passam por todos os guardrails relevantes seguem para processamento downstream.
 
-## Consequences
+## Consequências
 
-### Benefits
+### Benefícios
 
-- **Robustness**: Filters out inappropriate contextual information, preserving model reliability.
-- **Safety**: Validates model outputs, ensuring user safety.
-- **Standards Alignment**: Configurable to organizational policies, ethical standards, and legal requirements.
-- **Adaptability**: Can be implemented across various models and agents, with customizable requirements.
+- **Robustez**: Filtra informações contextuais inadequadas, preservando a confiabilidade do modelo.
+- **Segurança**: Valida as saídas do modelo, garantindo a segurança do usuário.
+- **Alinhamento a Padrões**: Configurável para políticas organizacionais, padrões éticos e requisitos legais.
+- **Adaptabilidade**: Pode ser implementado em diversos modelos e agentes, com requisitos personalizáveis.
 
-### Drawbacks
+### Desvantagens
 
-- **Overhead**: Collecting a diverse, high-quality corpus for multimodal guardrails and real-time processing can increase computational requirements and costs.
-- **Lack of Explainability**: The complexity of multimodal guardrails can make it difficult to explain final outputs.
+- **Sobrecarga**: Coletar um corpus diverso e de alta qualidade para guardrails multimodais e realizar processamento em tempo real pode aumentar requisitos computacionais e custos.
+- **Falta de Explicabilidade**: A complexidade dos guardrails multimodais pode dificultar a explicação dos resultados finais.
 
-## Real-World Examples
+## Exemplos do Mundo Real
 
-- **NeMo Guardrails (NVIDIA)**: Ensures dialogue coherence and prevents negative impacts from misinformation and sensitive topics.
-- **Llama Guard (Meta)**: Foundation model-based safeguard, trained on a risk taxonomy to identify potentially risky or violating content in prompts and outputs.
-- **Guardrails AI**: Provides a hub listing various validators for handling different risks in foundation model inputs and outputs.
+- **NeMo Guardrails (NVIDIA)**: Garante coerência de diálogo e previne impactos negativos de desinformação e tópicos sensíveis.
+- **Llama Guard (Meta)**: Mecanismo de proteção baseado em modelo de fundação, treinado em uma taxonomia de risco para identificar conteúdo potencialmente arriscado ou violador em prompts e saídas.
+- **Guardrails AI**: Fornece um hub listando vários validadores para lidar com diferentes riscos nas entradas e saídas de modelos de fundação.
 
-## Relationship to Other Patterns
+## Relação com Outros Padrões
 
-- **Proactive Goal Creator**: Multimodal Guardrails can process multimodal data captured by this pattern.
-- **One-shot and Incremental Model Querying**: Multimodal Guardrails serve as an intermediary layer, managing inputs and outputs for model queries.
+- **Proactive Goal Creator**: Multimodal Guardrails pode processar dados multimodais capturados por este padrão.
+- **One-shot e Incremental Model Querying**: Multimodal Guardrails serve como camada intermediária, gerenciando entradas e saídas para consultas ao modelo.
 
-## Use Cases
+## Casos de Uso
 
-- Preventing unsafe or non-compliant content in multimodal AI systems.
-- Enforcing copyright, privacy, or ethical guidelines across data types.
-- Modular extension to support new modalities or updated policies.
+- Prevenir conteúdo inseguro ou não conforme em sistemas de IA multimodais.
+- Impor diretrizes de direitos autorais, privacidade ou ética em diferentes tipos de dados.
+- Extensão modular para suportar novas modalidades ou políticas atualizadas.
 
-## Integration
+## Integração
 
-- Implement guardrail interfaces for each modality as needed.
-- Configure the `PolicyStore` with organization-specific rules.
-- Integrate the `GuardrailManager` into the multimodal data pipeline.
+- Implementar interfaces de guardrail para cada modalidade conforme necessário.
+- Configurar o `PolicyStore` com regras específicas da organização.
+- Integrar o `GuardrailManager` ao pipeline de dados multimodais.
 
-## Future Work
+## Trabalho Futuro
 
-- Define detailed guardrail policies for each modality.
-- Provide implementation examples and code snippets.
-- Add class and sequence diagrams to illustrate component interactions.
+- Definir políticas de guardrail detalhadas para cada modalidade.
+- Fornecer exemplos de implementação e trechos de código.
+- Adicionar diagramas de classes e de sequência para ilustrar as interações entre componentes.
 
 
 

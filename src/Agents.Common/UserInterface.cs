@@ -40,11 +40,12 @@ public class UserInterface : IUserInterface
     public void Notify(string message)
     {
         Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine("<|BEGIN|>");
+        Console.WriteLine("AI AGENT OUTPUT >");
         Console.ResetColor();
-        Console.WriteLine(message);
+        var decodedMessage = System.Text.RegularExpressions.Regex.Unescape(message);
+        Console.WriteLine(decodedMessage);
         Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine("<|END|>");
+        Console.WriteLine("< AI AGENT OUTPUT");
         Console.ResetColor();
     }
 }

@@ -10,7 +10,7 @@ namespace PassiveGoalCreator;
 /// based on a provided goal using specific formatting and instructions.
 /// Implements the IPromptOptimiser interface.
 /// </summary>
-public class Optimiser : IPromptOptimiser
+public class PromptOptimiser : IPromptOptimiser
 {
     /// <summary>
     /// Generates a structured and optimized prompt based on the provided agent goal.
@@ -22,22 +22,31 @@ public class Optimiser : IPromptOptimiser
     /// <returns>A formatted string representing the optimized prompt.</returns>
     public string OptimisePrompt(Goal goal) =>
         $"""
-         <input>
+         Act as a text classification model. Given the <input> and <memory>, select the most relevant 'label' from the 
+         <memory> that matches the <input>. Follow the instructions carefully to ensure accurate selection. Format your 
+         response as specified in the <output> section.
+         
+         ## input
             {goal.Intent}
-         </input>
-         <context>
+
+         ## memory
             {goal.Context}
-         </context>
-         <instructions>
-             - Select the 'label' from the <context>.
-             - The 'label' should be the most relevant to the <input>.
-             - The 'label' should be the same as the 'label' in the <context>.
-             - Do not include any other text just the 'label'.
-             - Pay attention to <output> format.
-         </instructions>
-         <output>
-             - [label]
-         </output>
+
+         ## instructions
+            1. Select the 'label' and 'value' from the <memory>.
+               - Ensure that the 'label' you select is directly related to the <input>.
+               - Avoid selecting 'labels' that are unrelated or only tangentially connected to the <input>.
+            2. If multiple 'labels' seem relevant, choose the one that best encapsulates the
+            3. If no relevant 'label' is found, respond with 'Unknown' as the 'label' and 'N/A' as the 'value'.
+            4. Pay attention to <output> format.
+            
+         ## Attention   
+            - Do not include any additional text or explanations in your response.
+            - Strictly adhere to the specified <output> format.
+
+         # output
+         The output should be a concatenation of the selected 'label' and 'value' in the following format:
+         <label> - <value>
          """;
 
     /// <summary>

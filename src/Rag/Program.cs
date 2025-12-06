@@ -30,7 +30,7 @@ var retriever = new Retriever("localhost", "docs", embedding);
 await retriever.Seed(sample);
 
 // CREATE AGENT
-var llm = Ollama.Create("http://localhost:11434", "phi4-mini", false);
+var llm = NewOllama.Create("http://localhost:11434", "phi4", false);
 var planner = new PlanGeneration(llm);
 var context = AgentContext.Default();
 var creator = new GoalCreator(context, retriever, planner);

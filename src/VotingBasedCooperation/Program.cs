@@ -5,7 +5,7 @@ using VotingBasedCooperation.Agents;
 Console.WriteLine("=== Voting-based Cooperation ===");
 
 var gemini = Gemini.Create();
-var msphi4 = Ollama.Create(model: "phi4-mini");
+var msphi4 = NewOllama.Create(model: "phi4");
 
 var agentG = new Worker("gemini", gemini);
 var agentP = new Worker("msphi4", msphi4);

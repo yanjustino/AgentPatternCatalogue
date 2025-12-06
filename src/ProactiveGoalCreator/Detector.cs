@@ -22,23 +22,14 @@ public class Detector: IContextDetector
         var context = new ContextData();
 
         // Simulação de leitura da tela
-        var activeWindow = GetActiveWindowTitle();
-        var visibleElements = GetVisibleUiElements();
+        var availability = GetSystemAvailability();
+        var status = GetSystemStatus();
 
-        context.Data["active_window"] = activeWindow;
-        context.Data["visible_ui_elements"] = string.Join(", ", visibleElements);
-        context.Data["screenshot_timestamp"] = DateTime.UtcNow.ToString("o");
+        context.Data["ListarSistemasDisponiveis"] = string.Join(", ", availability);
+        context.Data["StatusDosSistemas"] = string.Join(", ", status);
 
         return context;
     }
-
-    /// <summary>
-    /// Retrieves the title of the currently active window on the screen.
-    /// </summary>
-    /// <returns>
-    /// A string representing the title of the active window.
-    /// </returns>
-    private static string GetActiveWindowTitle() => "Code Editor - Visual Studio";
 
     /// <summary>
     /// Retrieves the identifiers of currently visible user interface elements on the screen.
@@ -46,5 +37,6 @@ public class Detector: IContextDetector
     /// <returns>
     /// An array of strings, where each string represents the identifier of a visible UI element.
     /// </returns>
-    private static string[] GetVisibleUiElements() => ["RunButton", "SearchBar", "FileMenu"];
+    private static string[] GetSystemAvailability() => ["Os **sistemas** **disponíveis** são:", "C3PO", "R2D2", "BB8"];
+    private static string[] GetSystemStatus() => ["**Status** de operação dos sistemas:", "C3PO - Online", "R2D2 - Offline", "BB8 - Online"];
 }

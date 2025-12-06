@@ -9,30 +9,30 @@ public static class MemoryFactory
 {
     private static readonly (string key, string value) RetrieveContext = ("tools",
         """
-            {
-                items: [
-                    { label: "GenerateMonthlySalesReport", value: "Generate a sales report summarizing revenue, units sold, and top products for a given month." },
-                    { label: "AnalyzeCustomerFeedback", value: "Perform sentiment analysis on collected customer feedback to identify key concerns and satisfaction trends." },
-                    { label: "CleanseTransactionData", value: "Remove duplicates, fix formatting issues, and validate fields in the raw transaction data." },
-                    { label: "ForecastQuarterlyRevenue", value: "Estimate future revenue for the upcoming quarter using historical data and trends." },
-                    { label: "DetectFraudulentTransactions", value: "Identify suspicious patterns in financial transactions that may indicate fraud." },
-                    { label: "SummarizeMeetingTranscript", value: "Extract action items and key points from a meeting transcript." },
-                    { label: "GenerateProductPerformanceChart", value: "Visualize product sales performance across regions and time periods." },
-                    { label: "ClassifySupportTickets", value: "Automatically categorize incoming support tickets by topic and urgency." },
-                    { label: "OptimizeInventoryLevels", value: "Suggest stock adjustments to prevent overstock or stockouts based on recent sales data." },
-                    { label: "BuildCustomerChurnModel", value: "Create a machine learning model to predict which customers are likely to leave." },
-                    { label: "TranslateReportToSpanish", value: "Translate an English business report into Spanish for international stakeholders." },
-                    { label: "GenerateCodeDocumentation", value: "Produce documentation from source code files including function descriptions and usage examples." },
-                    { label: "CompareMarketingCampaigns", value: "Analyze and compare the ROI of recent marketing campaigns." },
-                    { label: "ExtractEntitiesFromContracts", value: "Identify names, dates, and obligations from legal contracts using NLP." },
-                    { label: "SummarizeFinancialStatement", value: "Create an executive summary of a company's income statement or balance sheet." },
-                    { label: "GenerateWeeklyActivityDigest", value: "Compile a summary of key system or user activities during the past week." },
-                    { label: "EvaluateModelAccuracy", value: "Assess the performance of a predictive model based on test dataset metrics." },
-                    { label: "CreateOnboardingChecklist", value: "Generate a step-by-step checklist for onboarding new employees." },
-                    { label: "AggregateSurveyResponses", value: "Consolidate and summarize open-ended responses from a survey." },
-                    { label: "IdentifySecurityVulnerabilities", value: "Scan logs or code repositories to find potential security weaknesses." }
-                ]
-            }
+        {
+            items: [
+                { label: "GerarRelatorioVendasMensal", value: "Gerar um relatório de vendas resumindo receita, unidades vendidas e principais produtos para um mês específico." },
+                { label: "AnalisarFeedbackClientes", value: "Realizar análise de sentimento nos feedbacks de clientes coletados para identificar preocupações principais e tendências de satisfação." },
+                { label: "LimparDadosTransacao", value: "Remover duplicatas, corrigir problemas de formatação e validar campos nos dados brutos de transações." },
+                { label: "PreverReceitaTrimestral", value: "Estimar a receita futura para o próximo trimestre usando dados históricos e tendências." },
+                { label: "IdentificarTransacoesFraudulentas", value: "Identificar padrões suspeitos em transações financeiras que possam indicar fraude." },
+                { label: "ResumiTranscricaoReuniao", value: "Extrair itens de ação e pontos principais de uma transcrição de reunião." },
+                { label: "GerarGraficoDesempenhoProduto", value: "Visualizar o desempenho de vendas de produtos por região e período." },
+                { label: "ClassificarTicketsSuporte", value: "Categorizar automaticamente tickets de suporte por assunto e urgência." },
+                { label: "OtimizarNiveisEstoque", value: "Sugerir ajustes de estoque para evitar excesso ou falta com base nas vendas recentes." },
+                { label: "ConstruirModeloRotatividadeClientes", value: "Criar um modelo de aprendizado de máquina para prever quais clientes têm probabilidade de sair." },
+                { label: "TraduzirRelatorioEspanhol", value: "Traduzir um relatório empresarial em inglês para espanhol para stakeholders internacionais." },
+                { label: "GerarDocumentacaoCodigo", value: "Produzir documentação a partir de arquivos fonte incluindo descrições de funções e exemplos de uso." },
+                { label: "CompararCampanhasMarketing", value: "Analisar e comparar o ROI das campanhas de marketing recentes." },
+                { label: "ExtrairEntidadesContratos", value: "Identificar nomes, datas e obrigações em contratos legais usando PLN." },
+                { label: "ResumiDemonstracaoFinanceira", value: "Criar um resumo executivo da demonstração de resultados ou do balanço patrimonial de uma empresa." },
+                { label: "GerarResumoAtividadeSemanal", value: "Compilar um resumo das principais atividades do sistema ou dos usuários na última semana." },
+                { label: "AvaliarPrecisaoModelo", value: "Avaliar o desempenho de um modelo preditivo com base em métricas do conjunto de teste." },
+                { label: "CriarChecklistIntegracao", value: "Gerar uma lista de verificação passo a passo para integração de novos colaboradores." },
+                { label: "AgregarRespostasPesquisa", value: "Consolidar e resumir respostas abertas de uma pesquisa." },
+                { label: "IdentificarVulnerabilidadesSeguranca", value: "Analisar logs ou repositórios de código para encontrar possíveis vulnerabilidades de segurança." }
+            ]
+        }
         """);
 
     public static IMemoryStore CreateEmptyMemoryStore() => new MemoryStory();

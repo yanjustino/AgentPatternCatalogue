@@ -18,23 +18,21 @@ public class PlanGeneration(IFoundationModel llm) : IPlanGeneration
     {
         var prompt =
             $"""
-             <context>
-               You are a planning assistant. Break the following request into a task and subtask.
-             </context>  
-             <request>
+             You are a planning assistant. Break the following request into a task and subtask.
+
+             ## input
                "{input}"
-             </request>
-             <instruction>
+             
+             ## instructions
                 - The task should have a single subtask;
                 - The length of subtask step should be less than 50 words;
                 - The subtask should be a new content, based on the [previous task] in the context;
                 - Don't use the same content as the [previous task];
-             </instruction>
-             <output>
+             
+             ## output
                Task: [main task]
                Subtasks:
                  - [subtask]
-             </output>
              """;
 
         var result = await llm.SendMessage(prompt);

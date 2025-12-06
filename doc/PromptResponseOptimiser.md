@@ -1,59 +1,56 @@
 # Prompt/Response Optimiser
 
-**Summary**  
-The **Prompt/Response Optimiser** receives a generated goal and associated context and transforms them into optimized prompts for large language models (LLMs), improving output accuracy and ensuring responses align with the agent’s intended behavior.
+**Resumo**  
+O **Prompt/Response Optimiser** recebe uma meta gerada e o contexto associado e os transforma em prompts otimizados para modelos de linguagem (LLMs), melhorando a precisão das saídas e garantindo que as respostas estejam alinhadas com o comportamento pretendido do agente.
 
 ```mermaid
-flowchart TD
-    U[User] -->|prompt| Dlg[Dialogue Interface]
-    Dlg --> GC[Goal Creator]
-    GC -->|goal + context| PRO[Prompt/Response Optimiser]
-    
-    subgraph LLM Interaction
-        PRO -->|prompt| LLM[LLM]
-        LLM -->|response| PRO
+flowchart TB
+    Usuario
+    subgraph Sistema de Agentes
+        UI[Entrada do Usuário] --> AG[Agente]
+        AG --> PGC[Prompt/Response Optimiser]
+        PGC -.system prompt.-> AG 
+        AG -->|system prompt| LLM[LLM]
     end
-    
-    PRO -->|refined response| Exec[Agent Execution Layer]
-    PRO -->|feedback| Mem[(Memory)]
+    Usuario --> UI
 ```
 
-## Context
-After the agent receives or generates a goal with context (via a Goal Creator), it must translate this intent into effective prompts for an LLM, ensuring relevance, precision, and adherence to constraints and preferences.
+## Contexto
+Após o agente receber ou gerar uma meta com contexto (via um Goal Creator), ele deve traduzir essa intenção em prompts eficazes para um LLM, garantindo relevância, precisão e adesão a restrições e preferências.
 
-## Problem
-Poorly structured or overly generic prompts can result in ambiguous, inconsistent, or excessively verbose outputs, reducing the agent’s effectiveness and increasing user frustration.
+## Problema
+Prompts mal estruturados ou excessivamente genéricos podem resultar em saídas ambíguas, inconsistentes ou excessivamente verbosas, reduzindo a eficácia do agente e aumentando a frustração do usuário.
 
-## Forces
-* **Natural language ambiguity** – Open-ended or vague expressions may lead to out-of-scope completions.
-* **Behavioral control** – The agent may need to modulate style, tone, or detail level of responses.
-* **Context window limitations** – It’s necessary to balance completeness with brevity.
+## Forças
+* **Ambiguidade da linguagem natural** – Expressões abertas ou vagas podem levar a conclusões fora do escopo.
+* **Controle comportamental** – O agente pode precisar modular o estilo, o tom ou o nível de detalhe das respostas.
+* **Limitações da janela de contexto** – É necessário equilibrar completude com concisão.
 
-## Solution
-The **Prompt/Response Optimiser** applies prompt engineering techniques to enrich, rewrite, and validate the input before passing it to an LLM. It may also post-process the LLM’s output, applying summarization, alignment checks, or format adjustments. The optimizer operates using explicit parameters (e.g., temperature, max tokens, preferred format) and implicit context (e.g., memory, past goals, dialogue history).
+## Solução
+O **Prompt/Response Optimiser** aplica técnicas de engenharia de prompts para enriquecer, reescrever e validar a entrada antes de passá-la a um LLM. Ele também pode pós-processar a saída do LLM, aplicando sumarização, verificações de alinhamento ou ajustes de formato. O otimizador opera usando parâmetros explícitos (por exemplo, temperatura, máximo de tokens, formato preferido) e contexto implícito (por exemplo, memória, metas anteriores, histórico de diálogo).
 
-## Consequences
+## Consequências
 
-### Benefits
-* **Goal alignment** – Outputs are more consistent with the original user intent.
-* **Controlled behavior** – Style, tone, and output format can be adjusted predictably.
-* **Noise reduction** – Irrelevant or excessive content is minimized.
+### Benefícios
+* **Alinhamento com a meta** – As saídas ficam mais consistentes com a intenção original do usuário.
+* **Comportamento controlado** – Estilo, tom e formato de saída podem ser ajustados de forma previsível.
+* **Redução de ruído** – Conteúdo irrelevante ou excessivo é minimizado.
 
-### Drawbacks
-* **Computational overhead** – Optimisation may involve multiple LLM queries.
-* **Bias risk** – Over-constraining the prompt may suppress creativity or nuance.
+### Desvantagens
+* **Sobrecarga computacional** – A otimização pode envolver múltiplas consultas ao LLM.
+* **Risco de viés** – Constranger demais o prompt pode suprimir criatividade ou nuances.
 
-## Known Uses
-* **Auto-GPT / AgentGPT** – Automatically re-prompt based on goal verification and self-evaluation.
-* **Reflexion (Shinn et al.)** – Iteratively analyzes and reformulates prompts based on previous results.
-* **Chain-of-Thought Prompting** – Uses explicit structure to guide step-by-step reasoning.
+## Usos Conhecidos
+* **Auto-GPT / AgentGPT** – Re-prompt automático baseado em verificação de metas e autoavaliação.
+* **Reflexion (Shinn et al.)** – Analisa e reformula prompts iterativamente com base em resultados anteriores.
+* **Chain-of-Thought Prompting** – Usa estrutura explícita para orientar o raciocínio passo a passo.
 
-## Related Patterns
-* **Proactive Goal Creator** – Supplies enriched goals and context that feed this component.
-* **Memory Retriever** – Provides contextual data that the optimiser may inject into the prompt.
-* **Tool Handler** – Influences how prompts are shaped when external tools are invoked.
+## Padrões Relacionados
+* **Proactive Goal Creator** – Fornece metas e contexto enriquecidos que alimentam este componente.
+* **Memory Retriever** – Fornece dados contextuais que o otimizador pode injetar no prompt.
+* **Tool Handler** – Influencia como os prompts são moldados quando ferramentas externas são invocadas.
 
-## References
+## Referências
 [31] Y. Shinn et al., “Reflexion: Language agents with verbal reinforcement learning,” 2023.  
 [32] J. Wei et al., “Chain-of-Thought Prompting Elicits Reasoning in LLMs,” 2022.  
-[3] T. B. Brown et al., “Language Models are Few-Shot Learners,” 2020.  
+[3] T. B. Brown et al., “Language Models are Few-Shot Learners,” 2020.

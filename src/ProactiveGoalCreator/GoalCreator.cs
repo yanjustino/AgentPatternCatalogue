@@ -36,7 +36,7 @@ public class GoalCreator(AgentContext context, IEnumerable<IContextDetector> det
         if (multimodalContext.Data.Count != 0)
             Context.UserInterface.Notify("Multimodal context has been captured to improve goal understanding.");
         
-        var merged = ContextData.MergeAll(prompt.Context!, memoryContext, multimodalContext);
+        var merged = ContextData.MergeAll(prompt.Context!, multimodalContext);
         return prompt with { Context = merged };
     }
 }

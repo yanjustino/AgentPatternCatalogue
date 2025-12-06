@@ -1,61 +1,58 @@
-## Passive Goal Creator
-The **Passive Goal Creator** analyzes user-articulated goals through a dialogue interface.
+# Passive Goal Creator
+
+O **Criador de Objetivos Passivo** analisa objetivos articulados pelo usuário através de uma interface de diálogo.
 
 ```mermaid
 flowchart LR
-    subgraph Agent System
-        UI[User Input] --> AG[Agent]
-        AG --> PGC[PassiveGoalCreator]
-        PGC --> LLM[LLaMA]
+        UI[User <br> Interface] --> AG[Agent]
+        AG --> PGC[Passive <br> Goal Creator]
+        PGC --> LLM[LLM <br> Foundation Model]
 
-        subgraph Memory
-            MEM[Local Memory]
-        end
+            MEM[(Memory)]
 
-        AG --> MEM
-        MEM --> AG
-        PGC -->|Loads artifacts and history| MEM
-    end
+        MEM --> PGC
+        PGC -->|Carrega artefatos e histórico| MEM
 ```
 
-### Context
-When interacting with agents to solve specific problems, users provide related context and describe their goals through prompts.
+### Contexto
+Ao interagir com agentes para resolver problemas específicos, os usuários fornecem contexto relacionado e descrevem seus objetivos por meio de prompts.
 
-### Problem
-Users may lack experience in interacting with agents, and the provided information may be ambiguous, making it difficult for agents to achieve the desired goals.
+### Problema
+Os usuários podem não ter experiência em interagir com agentes, e as informações fornecidas podem ser ambíguas, dificultando que os agentes alcancem os objetivos desejados.
 
-### Forces
-- **Underspecification**: Users might not provide complete context or clearly defined goals.
-- **Efficiency**: Agents are expected to provide quick responses.
+### Forças
+- **Subespecificação**: Os usuários podem não fornecer contexto completo ou objetivos claramente definidos.
+- **Eficiência**: Espera-se que os agentes forneçam respostas rápidas.
 
-### Solution
-A foundation model-based agent provides a dialogue interface through which users directly specify the context and problems. This information is passed to the *Passive Goal Creator*, which determines the goals.
+### Solução
+Um agente baseado em modelo fundamental fornece uma interface de diálogo pela qual os usuários especificam diretamente o contexto e os problemas. Essas informações são encaminhadas ao *Criador de Objetivos Passivo*, que determina os objetivos.
 
-Additionally, the *Passive Goal Creator* can retrieve supplementary information from the agent’s memory, including:
-- Artifact repositories;
-- Tools used in recent tasks;
-- Conversation history;
-- Positive and negative examples.
+Além disso, o *Criador de Objetivos Passivo* pode recuperar informações suplementares da memória do agente, incluindo:
+- repositórios de artefatos;
+- ferramentas usadas em tarefas recentes;
+- histórico de conversas;
+- exemplos positivos e negativos.
 
-This information is appended to the user prompt to assist in goal identification. The generated goals are then sent to other components for decomposition and task execution.
+Essas informações são anexadas ao prompt do usuário para auxiliar na identificação dos objetivos. Os objetivos gerados são então enviados para outros componentes para decomposição e execução de tarefas.
 
-In multi-agent systems, one agent can invoke another agent’s API to delegate a task. The receiving agent analyzes the information to determine the corresponding goal.
+Em sistemas multiagente, um agente pode invocar a API de outro agente para delegar uma tarefa. O agente receptor analisa as informações para determinar o objetivo correspondente.
 
-### Consequences
+### Consequências
 
-#### Benefits
-- **Interactivity**: Users or other agents can interact directly with the agent via dialogue interfaces or APIs.
-- **Goal-seeking**: The agent can analyze user-provided context and retrieve memory data to identify and plan goal achievement.
-- **Efficiency**: The dialogue interface offers a straightforward and intuitive way for users to provide input.
+#### Benefícios
+- **Interatividade**: Usuários ou outros agentes podem interagir diretamente com o agente via interfaces de diálogo ou APIs.
+- **Busca por objetivos**: O agente pode analisar o contexto fornecido pelo usuário e recuperar dados da memória para identificar e planejar a conquista de objetivos.
+- **Eficiência**: A interface de diálogo oferece uma forma direta e intuitiva para os usuários fornecerem entradas.
 
-#### Drawbacks
-- **Reasoning uncertainty**: Ambiguous context and lack of standardized prompt structures can increase uncertainty during reasoning.
+#### Desvantagens
+- **Incerteza no raciocínio**: Contexto ambíguo e falta de estruturas de prompt padronizadas podem aumentar a incerteza durante o raciocínio.
 
-### Known Use Cases
-- **Liu et al. (2024)**: Agent that helps refine research questions via a dialogue interface.
-- **Kannan et al. (2022)**: Agent that allows users to decompose and assign tasks to robots.
-- **HuggingGPT**: Interprets complex user requests as intended goals through a chatbot interface.
+### Casos de Uso Conhecidos
+- **Liu et al. (2024)**: Agente que ajuda a refinar perguntas de pesquisa via interface de diálogo.
+- **Kannan et al. (2022)**: Agente que permite aos usuários decompor e atribuir tarefas a robôs.
+- **HuggingGPT**: Interpreta pedidos complexos de usuários como objetivos pretendidos através de uma interface de chatbot.
 
-### Related Patterns
-- **Proactive Goal Creator**: An alternative pattern that enables multimodal context injection.
-- **Prompt/Response Optimiser**: Can refine goals and context received from the *Passive Goal Creator*.
+### Padrões Relacionados
+- **Criador de Objetivos Proativo**: Padrão alternativo que permite injeção de contexto multimodal.
+- **Otimizador de Prompt/Resposta**: Pode refinar objetivos e contexto recebidos do *Criador de Objetivos Passivo*.
+```
